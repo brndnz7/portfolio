@@ -71,32 +71,36 @@ export default function SelectedWorks() {
             clipPath: 'inset(0px 0px round 3rem 3rem 0rem 0rem)',
         });
 
-        // Section Pinning
-        ScrollTrigger.create({
-            trigger: container.current,
-            start: 'top top',
-            end: 'bottom bottom',
-            pin: true,
-            pinSpacing: true,
-        });
+        // Section Pinning - seulement sur desktop
+        const mm = gsap.matchMedia();
+        
+        mm.add("(min-width: 768px)", () => {
+            ScrollTrigger.create({
+                trigger: container.current,
+                start: 'top top',
+                end: 'bottom bottom',
+                pin: true,
+                pinSpacing: true,
+            });
 
-        // Désactiver le scroll horizontal
-        ScrollTrigger.create({
-            trigger: gallery,
-            start: 'top top',
-            end: 'bottom bottom',
-            onEnter: () => {
-                document.body.style.overflow = 'hidden';
-            },
-            onLeave: () => {
-                document.body.style.overflow = '';
-            },
-            onEnterBack: () => {
-                document.body.style.overflow = 'hidden';
-            },
-            onLeaveBack: () => {
-                document.body.style.overflow = '';
-            }
+            // Désactiver le scroll horizontal - seulement sur desktop
+            ScrollTrigger.create({
+                trigger: gallery,
+                start: 'top top',
+                end: 'bottom bottom',
+                onEnter: () => {
+                    document.body.style.overflow = 'hidden';
+                },
+                onLeave: () => {
+                    document.body.style.overflow = '';
+                },
+                onEnterBack: () => {
+                    document.body.style.overflow = 'hidden';
+                },
+                onLeaveBack: () => {
+                    document.body.style.overflow = '';
+                }
+            });
         });
 
     }, { scope: galleryContainer });
@@ -111,9 +115,11 @@ export default function SelectedWorks() {
                     <TextReveal className={styles.description}>
                         Une sélection de mes meilleurs projets et réalisations.
                     </TextReveal>
-                    <FancyButton theme='button-2' link={`mailto:${commonConfig.personal.email}`} target={'_blank'}>
-                        Contact
-                    </FancyButton>
+                    <div className={styles.contactButton}>
+                        <FancyButton theme='button-2' link={`mailto:${commonConfig.personal.email}`} target={'_blank'}>
+                            Contact
+                        </FancyButton>
+                    </div>
 
                     <Blobs type={'v2'}/>
                 </header>
