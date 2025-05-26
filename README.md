@@ -1,36 +1,37 @@
 Hello 👋 
 
-[![alt text](https://github.com/yasingencnet/webkit/assets/5924267/993af830-5a00-42ed-9949-a86de938ef4f)](https://yasingenc.net)
+[![Portfolio](https://github.com/yasingencnet/webkit/assets/5924267/993af830-5a00-42ed-9949-a86de938ef4f)](https://portfolio-theta-wine-40.vercel.app/)
 
-[![LinkedIn](https://github.com/yasingencnet/webkit/assets/5924267/63307c26-ed84-4027-b970-c6b972d4419e)](https://www.linkedin.com/in/yasingencnet/)
-[![Twitter](https://github.com/yasingencnet/webkit/assets/5924267/2fdb1fd7-16ad-4a95-89f6-074b022b96be)](https://twitter.com/yasingencnet)
-[![GitHub](https://github.com/yasingencnet/webkit/assets/5924267/d99ace42-aaee-4aae-95f0-9149e975c261)](https://github.com/yasingencnet)
-[![Awwwards](https://github.com/yasingencnet/webkit/assets/5924267/15d35a80-a264-4674-9958-e9421a06e462)](https://www.awwwards.com/yasingencnet/)
-[![Codepen](https://github.com/yasingencnet/webkit/assets/5924267/e5084782-3645-4a25-8116-6641a3d6a7af)](https://codepen.io/yasingencnet)
+[![LinkedIn](https://github.com/yasingencnet/webkit/assets/5924267/63307c26-ed84-4027-b970-c6b972d4419e)](https://www.linkedin.com/in/baran-deniz-973ba923a/)
+[![GitHub](https://github.com/yasingencnet/webkit/assets/5924267/d99ace42-aaee-4aae-95f0-9149e975c261)](https://github.com/brndnz7)
 
-This is my portfolio [https://yasingenc.net](https://yasingenc.net). Drop me a line if I can do anything else for you.
+Ceci est le portfolio de **DENIZ Baran**, étudiant en BUT MMI spécialisé en développement web. 
+
+Découvrez mes projets et réalisations sur [https://portfolio-theta-wine-40.vercel.app/](https://portfolio-theta-wine-40.vercel.app/)
+
+N'hésitez pas à me contacter pour toute opportunité ou collaboration !
 
 ---
 
-### Run Project
+### Lancer le Projet
 
 ```bash
-# Run Development
+# Mode Développement
 npm run dev
 
-# Run Production
+# Mode Production
 npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser.
+Ouvrir [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 
 ---
 
-### Package List
+### Technologies Utilisées
 
-Powered by Vercel, Next.js, GSAP, and GitHub.
+Propulsé par Vercel, Next.js, GSAP, et GitHub.
 
-| Core               | Others                |
+| Core               | Autres                |
 |--------------------|-----------------------|
 | react              | sass                  |
 | react-dom          | @gsap/react           |
@@ -41,6 +42,14 @@ Powered by Vercel, Next.js, GSAP, and GitHub.
 |                    | swiper                |
 |                    | three.js              |
 
+---
 
-## License
-Feel free to use this project.
+### À Propos
+
+Étudiant passionné en développement web, je me spécialise dans la création de sites web modernes, accessibles et performants. Mon portfolio présente une sélection de mes meilleurs projets utilisant diverses technologies comme JavaScript, PHP, CSS, HTML, SQL, WordPress, Symfony et bien d'autres.
+
+**Contact :** barancelal@hotmail.com  
+**Localisation :** Strasbourg, France
+
+## Licence
+N'hésitez pas à utiliser ce projet.
