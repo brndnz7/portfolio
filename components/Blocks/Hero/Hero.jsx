@@ -133,17 +133,7 @@ export default function Hero() {
                     <div className={styles.inner}>
                         <div className={styles.title}>
                             <h1 ref={textRef}>
-                                I&apos;m Yasin <span className={`${styles.icon}`}>
-                                    <span className={styles.reveal}></span>
-                                    <Image
-                                        src="/hero-image.jpg"
-                                        alt={commonConfig.metadata.title}
-                                        width={640}
-                                        height={300}
-                                        priority
-                                        className={styles.heroImg}
-                                    />
-                                </span> <br/> Creative Frontend Developer.
+                                Je suis Baran <br/> Étudiant en développement web.
                             </h1>
                             <p ref={descRef}>{commonConfig.metadata.description}</p>
                         </div>

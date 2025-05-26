@@ -13,7 +13,7 @@ export default function ExperienceBlock() {
         <section className={styles.section} id={'experience'}>
             <Blobs type={'v2'} classVariable={`${styles.blob}`}/>
             <header className={styles.header}>
-                <Title color={'white'}><span>Experience</span> <br/>History</Title>
+                <Title color={'white'}><span>Mon</span> <br/>parcours</Title>
             </header>
             {Companies.map((item, index) => {
                 return (

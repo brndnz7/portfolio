@@ -75,7 +75,7 @@ export default function Gallery() {
             <Blobs type={'v2'} classVariable={`${styles.blob}`}/>
             <Container>
                 <header className={styles.header}>
-                    <Title color={'white'}><span>My</span> Photo <br/>Journal</Title>
+                    <Title color={'white'}><span>Mes</span> Projets <br/></Title>
                     <FancyButton theme='button-1' target="_blank" link={commonConfig.social.instagram}>Follow on
                         Instagram</FancyButton>
                 </header>

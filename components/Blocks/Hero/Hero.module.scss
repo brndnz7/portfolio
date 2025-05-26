@@ -50,49 +50,6 @@
     }
   }
 
-  .icon {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 30rem;
-    height: 9rem;
-    border-radius: 100vw;
-    vertical-align: baseline;
-    overflow: hidden;
-    margin: 0 1.5rem;
-    z-index: 111;
-    position: relative;
-    @include respond-below(xml) {
-      height: 7.8rem;
-      width: 24rem;
-    }
-    @include respond-below(lg) {
-      height: 6.4rem;
-      width: 20rem;
-    }
-    @include respond-below(md) {
-      margin: 1.5rem auto;
-      display: flex;
-    }
-    .heroImg {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: scale(1.6);
-      transform-origin: left center;
-      border-radius: 100vw;
-    }
-    .reveal {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, #b9b5db, hsl(var(--color-bg)));
-      z-index: 1;
-      border-radius: 100vw;
-    }
-  }
-
   p{
     font-size: var(--fs-md);
     font-weight: var(--fw-light);
@@ -158,6 +115,7 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
+  -webkit-user-select: none;
   user-select: none;
   z-index: -999999;
 }
@@ -169,6 +127,7 @@
   height: 100%;
   z-index: -1;
   pointer-events: none;
+  -webkit-user-select: none;
   user-select: none;
 
   > * {

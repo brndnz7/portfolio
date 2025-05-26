@@ -9,7 +9,7 @@
   align-items: center;
   line-height: 118%;
   font-family: var(--font-alt);
-  font-size: var(--fs-xxl);
+  font-size: var(--fs-lg);
   font-weight: var(--fw-bold);
   color: transparent;
   -webkit-text-stroke-width: 1px;
@@ -17,7 +17,7 @@
   transition: all 0.3s ease-in-out;
 
   svg {
-    transform: translateY(17px);
-    margin: 0 60px;
+    transform: translateY(12px);
+    margin: 0 40px;
   }
 }

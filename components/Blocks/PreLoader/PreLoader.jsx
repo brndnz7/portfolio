@@ -5,7 +5,6 @@ import styles from './PreLoader.module.scss';
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
-import Logo from "@/components/UI/Elements/Logo/Logo";
 
 export default function PreLoader({ onComplete }) {
     const container = useRef();
@@ -30,7 +29,7 @@ export default function PreLoader({ onComplete }) {
             tl.to(`.${styles.progress}`, {
                 duration: 1,
                 scrambleText: {
-                    text: "LOADING THE WEBSITE",
+                    text: "CHARGEMENT DU SITE",
                     revealDelay: 0.2,
                     oldClass: `${styles.old}`,
                 },
@@ -52,9 +51,6 @@ export default function PreLoader({ onComplete }) {
 
     return (
         <section className={styles.container} ref={container}>
-            <div className={styles.badge}>
-                <Logo></Logo>
-            </div>
             <div className={styles.progress}></div>
         </section>
     );

@@ -4,69 +4,69 @@
     "image": "/icon/icon-js.svg",
     "title": "JavaScript",
     "subtitle": "Vanilla, jQuery",
-    "description": "I bring websites to life with JavaScript, adding interactive features and optimizing performance with clean and efficient code."
+    "description": "Je donne vie aux sites web avec JavaScript, en ajoutant des fonctionnalités interactives et en optimisant les performances avec un code propre et efficace."
   },
   {
-    "icon": "IconReact",
-    "image": "/icon/icon-react.svg",
-    "title": "React JS",
-    "subtitle": "Next.js, Vercel",
-    "description": "Using React, I craft scalable user interfaces with components, state management, and virtual DOM manipulation for seamless web applications."
+    "icon": "IconPHP",
+    "image": "/icon/icon-php.svg",
+    "title": "PHP",
+    "subtitle": "Développement Backend",
+    "description": "Je développe des applications web robustes avec PHP, en créant des solutions backend performantes et sécurisées."
   },
   {
     "icon": "IconCSS",
     "image": "/icon/icon-css.svg",
     "title": "CSS",
     "subtitle": "Animations, Sass",
-    "description": "I prioritize pixel perfection, paying close attention to details for visually polished and precisely aligned designs, ensuring a seamless user experience."
+    "description": "Je crée des interfaces modernes et responsives avec CSS, en utilisant les dernières fonctionnalités pour des designs élégants."
   },
   {
     "icon": "IconHTML",
     "image": "/icon/icon-html.svg",
     "title": "HTML",
-    "subtitle": "Semantic Markup",
-    "description": "Beyond markup, HTML is crucial for an inclusive web. I structure content carefully for universal accessibility."
+    "subtitle": "Balisage Sémantique",
+    "description": "Au-delà du simple balisage, HTML est crucial pour un web inclusif. Je structure le contenu avec soin pour une accessibilité universelle."
   },
   {
-    "icon": "IconOptimization",
-    "image": "/icon/icon-optimization.svg",
-    "title": "PageSpeed",
-    "subtitle": "Insights",
-    "description": "I specialize in enhancing website performance, ensuring fast loading times and efficient resource utilization for an optimal user experience."
+    "icon": "IconSQL",
+    "image": "/icon/icon-sql.svg",
+    "title": "SQL",
+    "subtitle": "Gestion de Base de Données",
+    "description": "Je gère et optimise les bases de données avec SQL, en créant des structures de données efficaces et en écrivant des requêtes performantes."
   },
   {
-    "icon": "IconA11Y",
-    "image": "/icon/icon-a11y.svg",
-    "title": "A11Y",
-    "subtitle": "Web Accessibility",
-    "description": "Accessibility is a must. I ensure everyone can use what I create, focusing on keyboard navigation and screen reader compatibility."
+    "icon": "IconWordPress",
+    "image": "/icon/icon-wordpress.svg",
+    "title": "WordPress",
+    "subtitle": "Développement CMS",
+    "description": "Je développe des sites web personnalisés avec WordPress, en créant des thèmes et des plugins sur mesure pour répondre aux besoins spécifiques."
   },
   {
     "icon": "IconFigma",
     "image": "/icon/icon-figma.svg",
     "title": "Design",
     "subtitle": "Figma & Photoshop",
-    "description": "While not a full-time UI designer, I have an eye for aesthetics, creating visually appealing and user-friendly interfaces."
+    "description": "Bien que je ne sois pas un designer UI à temps plein, j'ai un œil pour l'esthétique, créant des interfaces visuellement attrayantes et conviviales."
   },
   {
-    "icon": "IconWebpack",
-    "image": "/icon/icon-webpack.svg",
-    "title": "Development Env.",
-    "subtitle": "Webpack",
-    "description": "I use tools like Webpack, Vite, Parcel, or Gulp to streamline workflows, automating development for efficiency."
+    "icon": "IconGit",
+    "image": "/icon/icon-git.svg",
+    "title": "Git",
+    "subtitle": "Gestion de Versions",
+    "description": "Je maîtrise Git pour la gestion de versions, en collaborant efficacement sur des projets et en maintenant un historique de code propre."
   },
   {
-    "icon": "IconAPI",
-    "image": "/icon/icon-api.svg",
-    "title": "REST APIs",
-    "subtitle": "Axios x Fetch",
-    "description": "I integrate data and functionality seamlessly with REST APIs, creating dynamic web applications for enhanced performance."
+    "icon": "IconSymfony",
+    "image": "/icon/icon-symfony.svg",
+    "title": "Symfony",
+    "subtitle": "Framework PHP",
+    "description": "Je développe des applications web robustes avec Symfony, en suivant les meilleures pratiques et en utilisant ses composants puissants."
   },
   {
-    "icon": "IconGSAP",
-    "image": "/icon/icon-gsap.svg",
-    "title": "GSAP",
-    "subtitle": "Scroll Animations",
-    "description": "I use GSAP for captivating animations that bring web pages to life, enhancing the overall user experience."
+    "icon": "IconTrello",
+    "image": "/icon/icon-trello.svg",
+    "title": "Trello",
+    "subtitle": "Gestion de Projet",
+    "description": "J'utilise Trello pour gérer efficacement les projets, en organisant les tâches et en suivant la progression des développements."
   }
 ]

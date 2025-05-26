@@ -1,37 +1,38 @@
 {
-  "works": {
-    "isActive": false,
-    "showOnNavigation":  true,
-    "showOnFooter":  true,
-    "title": "Works",
-    "description": "Here's a curated selection showcasing my expertise and the achieved results.",
-    "image": "",
-    "link": "#works"
-  },
   "skills": {
     "isActive": true,
     "showOnNavigation":  true,
     "showOnFooter":  true,
-    "title": "Skills",
-    "description": "Check out the things I'm good at, from building websites to design and more.",
+    "title": "Compétences",
+    "description": "Explorez mon éventail de compétences techniques, de la programmation au design, qui me permettent de créer des solutions web innovantes.",
     "image": "",
     "link": "#skills"
+  },
+  "works": {
+    "isActive": true,
+    "showOnNavigation":  true,
+    "showOnFooter":  true,
+    "title": "Projets",
+    "description": "Voici une sélection de mes réalisations qui met en valeur mon expertise et les résultats obtenus.",
+    "image": "",
+    "link": "#works"
   },
   "experience": {
     "isActive": true,
     "showOnNavigation":  true,
     "showOnFooter":  true,
-    "title": "Experience",
-    "description": "Check out the things I'm good at, from building websites to design and more.",
+    "title": "Expérience",
+    "description": "Parcourez mon parcours professionnel et les projets significatifs qui ont façonné mon expertise dans le développement web.",
     "image": "",
     "link": "#experience"
   },
+  
   "resume": {
     "isActive": true,
     "showOnNavigation":  true,
     "showOnFooter":  true,
-    "title": "Resume",
-    "description": "See my work history and what I've achieved in a quick and easy resume.",
+    "title": "CV",
+    "description": "Consultez mon parcours professionnel et mes réalisations dans un CV clair et concis.",
     "image": "",
     "link": "#resume"
   },
@@ -40,16 +41,16 @@
     "showOnNavigation":  true,
     "showOnFooter":  false,
     "title": "Contact",
-    "description": "Now it’s your turn to say hi. I hope to hear from you!",
+    "description": "À votre tour de me dire bonjour. J'espère avoir de vos nouvelles !",
     "image": "",
     "link": "#footer"
   },
   "instagram": {
     "isActive":  true,
     "showOnNavigation":  false,
-    "showOnFooter":  true,
+    "showOnFooter":  false,
     "title": "Instagram",
-    "description": "Good memories, best times. My photo journal.",
+    "description": "Bons souvenirs, meilleurs moments. Mon journal photo.",
     "image": "",
     "link": "https://www.instagram.com/yasingencnet/"
   },
@@ -57,8 +58,8 @@
     "isActive":  false,
     "showOnNavigation": false,
     "showOnFooter": false,
-    "title": "About",
-    "description": "I design & develop modern and accessible web interfaces.",
+    "title": "À propos",
+    "description": "Je conçois et développe des interfaces web modernes et accessibles.",
     "image": "",
     "link": "/about"
   },
@@ -67,7 +68,7 @@
     "showOnNavigation":  false,
     "showOnFooter":  false,
     "title": "Blog",
-    "description": "Articles focused on CSS, HTML, JavaScript, and other frontend stuff.",
+    "description": "Articles axés sur CSS, HTML, JavaScript et autres sujets frontend.",
     "image": "",
     "link": "/blog"
   }

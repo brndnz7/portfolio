@@ -14,7 +14,6 @@ import Logo from '@/components/UI/Elements/Logo/Logo';
 import { getCurrentYear } from "@/utils/utils.js";
 import SocialLinks from "@/components/UI/Cards/SocialLinks/SocialLinks";
 import NavDetailed from "@/components/UI/Cards/NavDetailed/NavDetailed";
-import WeatherAPI from "@/components/UI/Elements/WeatherAPI/WeatherAPI";
 import Blobs from "@/components/UI/Elements/Blobs/Blobs";
 
 export default function Footer() {
@@ -24,20 +23,6 @@ export default function Footer() {
     const footerBottom = useRef(null);
     const skeleton = useRef(null);
     const currentYear = getCurrentYear();
-
-    const [currentTime, setCurrentTime] = useState('');
-    useEffect(() => {
-        // Get current time in Seattle, WA (PST) on the client side
-        const timeZone = commonConfig.metadata.timeZone;
-        const clientTime = new Date().toLocaleString(commonConfig.metadata.locale, {
-            timeZone: timeZone,
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true,
-            timeZoneName: 'short'
-        });
-        setCurrentTime(clientTime);
-    }, []);
 
     // GSAP
     useGSAP(() => {
@@ -62,7 +47,7 @@ export default function Footer() {
             <div className={styles.inner}>
                 <div className={styles.connect}>
                     <h2 className={styles.title}>
-                        <span>Let’s</span>  <br/>Connect.
+                        <span>Contactez</span>  <br/>Moi
                     </h2>
 
                     <Link className={styles.email} href={`mailto:${commonConfig.personal.email}`}>
@@ -78,18 +63,7 @@ export default function Footer() {
                 </div>
 
                 <div className={styles.bottom} ref={footerBottom}>
-                    <Logo classVariable={styles.badge}></Logo>
-                    <div className={styles.copyright}>&copy; {currentYear} {commonConfig.personal.name} {commonConfig.personal.surname}
-                        <br/>
-                        Powered by&nbsp;
-                        Vercel,&nbsp;
-                        Next.js, and &nbsp;
-                        <Link href="https://github.com/yasingencnet/webkit">GitHub</Link>.
-                        <br/>
-                        {`${commonConfig.personal.city}, ${commonConfig.personal.state} ${currentTime}`}&nbsp;
-                        •&nbsp;
-                        <WeatherAPI></WeatherAPI>
-                    </div>
+                    <div className={styles.copyright}>&copy; {currentYear} {commonConfig.personal.name} {commonConfig.personal.surname}</div>
                     <div className={styles.verse}>{commonConfig.content.verse}</div>
                 </div>
             </div>

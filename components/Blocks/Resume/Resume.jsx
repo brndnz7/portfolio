@@ -49,15 +49,10 @@ export default function Resume() {
                     <div className={styles.cardGroup} ref={cardGroup}>
                         <div className={`${styles.card} ${styles.cardV1}`}>
                             <div className={styles.cardInner}>
-                                <div className={styles.cardTitle}>YASIN GENC</div>
-                                <div className={styles.cardDesc}>Senior Frontend Developer</div>
+                                <div className={styles.cardTitle}>DENIZ BARAN</div>
+                                <div className={styles.cardDesc}>Étudiant en BUT MMI</div>
                                 <hr/>
-                                <p>I am Yasin, a senior frontend developer with over 7 years of professional experience.
-                                    Successfully building user-friendly websites with ReactJS & NextJS. I pay attention
-                                    to
-                                    small details, enjoy technical problems, and work well in teams. I like learning new
-                                    technologies and always aim to improve my skills.
-                                </p>
+                                <p>Je suis Baran, étudiant en BUT MMI (Métiers du Multimédia et de l&apos;Internet) spécialisé en développement web. Passionné par la création de sites web modernes et accessibles, je me concentre sur l&apos;apprentissage des technologies web actuelles. Je suis particulièrement attentif aux détails, j&apos;aime résoudre des problèmes techniques et je m&apos;épanouis dans le travail d&apos;équipe. Mon objectif est de développer constamment mes compétences pour devenir un développeur web polyvalent et innovant.</p>
                                 <div>
                                     <Link href={`mailto:${commonConfig.personal.email}`} target={'_blank'}>
                                         {commonConfig.personal.email}
@@ -65,15 +60,15 @@ export default function Resume() {
                                     <span>{commonConfig.personal.city}, {commonConfig.personal.state}</span>
                                 </div>
                                 <hr/>
-                                <div className={styles.cardSectionTitle}>WORK EXPERIENCE</div>
+                                <div className={styles.cardSectionTitle}>EXPERIENCES</div>
                                 <p>
-                                    Senior Frontend Developer | TenTwenty Digital Agency <br/>
-                                    UI & Frontend Developer | Denge Bilgisayar <br/>
-                                    Frontend Developer | Agency Look
+                                    Stage | Euro Consultancy <br/>
+                                    BUT MMI | IUT de Haguenau <br/>
+                                    BUT GEII | IUT de Haguenau
                                 </p>
                             </div>
                             <figure className={styles.figure}>
-                                <Image src="/yasin-genc-photo.jpeg" alt="Yasin Genc" width={150} height={150}/>
+                                <Image src="/baranphoto.jpeg" alt="Yasin Genc" width={150} height={150}/>
                             </figure>
                         </div>
                         <div className={`${styles.card} ${styles.cardV2}`}>
@@ -84,13 +79,11 @@ export default function Resume() {
                     </div>
 
                     <div className={styles.cta}>
-                        <FancyButton theme='button-1' target={'_blank'} link={commonConfig.personal.resumeURL}>View
-                            Resume</FancyButton>
+                        <FancyButton theme='button-1' target={'_blank'} link={commonConfig.personal.resumeURL}>Voir mon CV</FancyButton>
                     </div>
                     <div className={styles.links}>
                         <Link href={`${commonConfig.social.linkedin}`} target={'_blank'}>LinkedIn</Link>
                         <Link href={`${commonConfig.social.github}`} target={'_blank'}>GitHub</Link>
-                        <Link href={`${commonConfig.social.codepen}`} target={'_blank'}>CodePen</Link>
                     </div>
                 </div>
             </Container>
