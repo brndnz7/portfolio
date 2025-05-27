@@ -25,10 +25,11 @@ export default function SelectedWorks() {
     const container = useRef();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [visibleProjects, setVisibleProjects] = useState(3);
+    const [isMobile, setIsMobile] = useState(false);
     const { contextSafe } = useGSAP({scope: container});
     
     const activeWorks = Works.filter(work => work.status);
-    const showMoreButton = visibleProjects < activeWorks.length;
+    const showMoreButton = isMobile && visibleProjects < activeWorks.length;
 
     const scrollToNext = () => {
         const nextIndex = currentIndex + 1;
@@ -63,6 +64,18 @@ export default function SelectedWorks() {
     const showMoreProjects = () => {
         setVisibleProjects(prev => Math.min(prev + 3, activeWorks.length));
     };
+
+    // Détection mobile/desktop
+    React.useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     useGSAP(() => {
         gsap.registerPlugin(ScrollTrigger);
@@ -132,7 +145,7 @@ export default function SelectedWorks() {
                     <Blobs type={'v2'}/>
                 </header>
 
-                {activeWorks.slice(0, visibleProjects).map((work, index) => {
+                {activeWorks.slice(0, isMobile ? visibleProjects : activeWorks.length).map((work, index) => {
                     const lightness = parseFloat(work.color.l);
                     return (
                       <div key={index} className={`${styles.browser}`}
