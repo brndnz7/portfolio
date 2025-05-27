@@ -2,7 +2,7 @@
   {
     "title": "Trash Game",
     "image": "/reference/SAE401.png",
-    "description": "Site réalisé dans le cadre d'une SAÉ avec du html, css, php, sql, twig, symfony, javascript, git",
+    "description": "Jeu web interactif de tri des déchets réalisé dans le cadre d'une SAÉ. Une expérience ludique pour sensibiliser au recyclage avec système de score et de niveaux.",
     "url": "https://trashgame.aslan.etu.mmi-unistra.fr/",
     "date": "2024",
     "service": "Développement Full-Stack",
@@ -17,7 +17,7 @@
   {
     "title": "Ecostay Global",
     "image": "/reference/ecostay.png",
-    "description": "Site vitrine pour une boutique en ligne sur Wordpress en utilisant Woocomerce, Duplicator et des extensions pour faire une affiliation Amazon",
+    "description": "Site vitrine pour une boutique en ligne spécialisée dans les bijoux.",
     "url": "https://ecostay-global.com",
     "date": "2023",
     "service": "Développement WordPress",
@@ -30,9 +30,24 @@
     }
   },
   {
+    "title": "Site de Couture",
+    "image": "/reference/couture.png",
+    "description": "Plateforme d'échange et de réservation d'objets de couture. Système complet avec gestion des catégories, authentification multi-rôles, réservations et interface d'administration.",
+    "url": "https://info4.denizb.etu.mmi-unistra.fr/",
+    "date": "2024",
+    "service": "Développement Full-Stack",
+    "technologies": ["Symfony", "PHP", "Twig", "Doctrine", "MySQL", "CSS", "JavaScript", "Bootstrap"],
+    "status": true,
+    "color": {
+      "h": "280",
+      "s": "55%",
+      "l": "45%"
+    }
+  },
+  {
     "title": "Green Life",
     "image": "/reference/greenlife.png",
-    "description": "Site pour une boutique en ligne avec Shopify",
+    "description": "Boutique en ligne pour des pièges à rongeurs écologiques. Design moderne et responsive avec expérience d'achat optimisée et système de paiement sécurisé.",
     "url": "https://greenlifeoff.com",
     "date": "2023",
     "service": "Développement Shopify",
@@ -47,7 +62,7 @@
   {
     "title": "Ammo Stock",
     "image": "/reference/sae205.png",
-    "description": "Site réalisé dans le cadre d'une SAÉ avec du html, css, php, sql, twig",
+    "description": "Site réalisé dans le cadre d'une SAÉ durant ma formation avec système de recherche et filtres avancés.",
     "url": "https://ammostock.denizb.etu.mmi-unistra.fr/",
     "date": "2023",
     "service": "Développement Full-Stack",
@@ -62,7 +77,7 @@
   {
     "title": "La Montagne des Singes",
     "image": "/reference/sae202.png",
-    "description": "Site réalisé dans le cadre d'une SAÉ sur wordpress avec elementor, polylang, duplicator etc...",
+    "description": "Site web pour le parc animalier de la Montagne des Singes réalisé dans le cadre d'une SAÉ. Site multilingue avec présentation des espèces, informations pratiques et billetterie en ligne.",
     "url": "https://denizb.etu.mmi-unistra.fr/lamontagnesdesinges/",
     "date": "2023",
     "service": "Développement WordPress",
@@ -77,7 +92,7 @@
   {
     "title": "Jujutsu Kaisen",
     "image": "/reference/jjk.png",
-    "description": "Site réalisé avec du html, css, twig, php et javascript",
+    "description": "Site web dédié à l'univers de Jujutsu Kaisen avec présentation des personnages, techniques et histoires. Design immersif avec animations et interface interactive.",
     "url": "https://denizb.etu.mmi-unistra.fr/site%20html-css/DENIZ_Baran_V7/",
     "date": "2023",
     "service": "Développement Front-End",
@@ -92,7 +107,7 @@
   {
     "title": "Site Olfactif",
     "image": "/reference/olfactif.png",
-    "description": "Premier site réalisé avec html et css uniquement",
+    "description": "Premier projet web explorant l'univers des parfums et senteurs. Site artistique avec design épuré et navigation intuitive pour découvrir différentes fragrances.",
     "url": "https://denizb.etu.mmi-unistra.fr/site%20html-css/WEB1_Deniz_Baran/",
     "date": "2022",
     "service": "Développement Front-End",
@@ -107,7 +122,7 @@
   {
     "title": "Vitesse Max",
     "image": "/reference/vitessemax.png",
-    "description": "Vitesse Max (première expérience wordpress)",
+    "description": "Blog automobile passionné dédié aux voitures de sport et à l'actualité automotive. Première expérience de création de contenu avec interface de publication et gestion de commentaires.",
     "url": "https://vitessemax.wordpress.com",
     "date": "2022",
     "service": "WordPress",

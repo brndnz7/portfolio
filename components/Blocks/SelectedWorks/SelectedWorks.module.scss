@@ -90,11 +90,11 @@
     width: 100% !important;
     overflow: visible !important;
     max-height: initial !important;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     padding: 0 calc(var(--x-spacing) / 2);
-    justify-content: center;
+    align-items: center;
   }
   
   > * {
@@ -115,7 +115,6 @@
       max-width: 40rem;
       height: 100%;
       @include respond-below(md) {
-        grid-column: 1 / -1;
         width: 100%;
         max-width: none;
         height: auto;
@@ -127,13 +126,13 @@
 
     &:not(:first-child) {
       width: 38dvw;
-      height: calc(80dvh - (var(--x-spacing) * 1.5));
+      height: calc(85dvh - (var(--x-spacing) * 1.5));
       
       @include respond-below(md) {
         width: 100%;
         height: auto;
-        min-height: 32rem;
-        max-height: 32rem;
+        min-height: 35rem;
+        max-height: 38rem;
       }
     }
   }
@@ -215,14 +214,12 @@
     overflow: hidden;
   }
   &:hover{
+    transform: scale(1.05);
     .browserHeader{
       transform: translateY(-2rem);
       @include respond-below(md) {
         transform: none;
       }
-    }
-    .technologies{
-      opacity: 1;
     }
     &:before{
       background: hsl(calc(var(--h) + 2), calc(var(--s) + 2%), calc(var(--l) + 5%));
@@ -236,6 +233,9 @@
       @include respond-below(md) {
         transform: none;
       }
+    }
+    @include respond-below(md) {
+      transform: none;
     }
   }
   &:before, &:after{
@@ -274,7 +274,7 @@
   position: relative;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   margin-bottom: auto;
   padding: 3rem;
@@ -286,6 +286,16 @@
     align-items: flex-start;
   }
 }
+
+.headerContent{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+  @include respond-below(md) {
+    gap: 0.8rem;
+  }
+}
 .browserBody{
   display: flex;
   justify-content: center;
@@ -293,10 +303,10 @@
   border-radius: 1rem 1rem 0 0;
   overflow: hidden;
   width: calc(100% - 6rem);
-  height: calc(100% - 12rem);
+  height: calc(100% - 15rem);
   @include respond-below(md) {
     width: calc(100% - 3rem);
-    height: calc(100% - 10rem);
+    height: calc(100% - 12rem);
     border-radius: 0.5rem;
   }
   .image{
@@ -323,19 +333,11 @@
 }
 
 .technologies{
-  position: absolute;
-  bottom: 1rem;
-  left: 3rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  opacity: 0;
+  opacity: 1;
   transition: all 0.3s ease;
-  @include respond-below(md) {
-    position: static;
-    opacity: 1;
-    margin-top: 0.5rem;
-  }
 }
 
 .tech{
@@ -349,6 +351,25 @@
   .dark & {
     color: hsl(var(--color-black));
     background: rgba(0, 0, 0, 0.1);
+  }
+}
+
+.workDescription{
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-regular);
+  color: hsl(var(--color-white));
+  line-height: 1.5;
+  margin: 0;
+  opacity: 1;
+  transform: none;
+  max-width: 100%;
+  transition: all 0.3s ease;
+  .dark & {
+    color: hsl(var(--color-black));
+  }
+  @include respond-below(md) {
+    font-size: var(--fs-xxs);
+    line-height: 1.4;
   }
 }
 
@@ -392,4 +413,60 @@
   @include respond-below(md) {
     display: none;
   }
+}
+
+.showMoreContainer {
+  display: none;
+  
+  @include respond-below(md) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 2rem 0;
+  }
+}
+
+.showMoreButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  border: 2px solid hsl(var(--color-white));
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: hsl(var(--color-white));
+    transform: scale(1.05);
+    
+    .plusIcon {
+      color: hsl(var(--color-black));
+    }
+    
+    .showMoreText {
+      color: hsl(var(--color-black));
+    }
+  }
+}
+
+.plusIcon {
+  font-size: 2rem;
+  font-weight: bold;
+  color: hsl(var(--color-white));
+  line-height: 1;
+  margin-bottom: 0.2rem;
+  transition: all 0.3s ease;
+}
+
+.showMoreText {
+  font-size: var(--fs-xxs);
+  font-weight: var(--fw-regular);
+  color: hsl(var(--color-white));
+  text-align: center;
+  transition: all 0.3s ease;
 }

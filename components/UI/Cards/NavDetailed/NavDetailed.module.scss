@@ -4,31 +4,30 @@
 }
 .ul{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem;
   padding-left: 0;
   @include respond-below(lg) {
-    grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr))
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: 3rem;
   }
   @include respond-below(sm) {
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr))
+    gap: 2rem;
+    grid-template-columns: 1fr;
   }
   li{
-    &:nth-child(1), &:nth-child(2){
-      @include respond-above(lg) {
-        grid-column: 2 / 3;
-      }
-    }
     a, button{
       display: block;
-      padding: 1rem;
+      padding: 1.5rem;
       text-decoration: none;
       border: 0;
       background: transparent;
       text-align: left;
+      border-radius: 0.8rem;
+      transition: all 0.3s ease;
       &:hover{
         cursor: pointer;
+        background: hsla(var(--color-white), 0.05);
       }
     }
   }
@@ -37,12 +36,13 @@
   position: relative;
   overflow: hidden;
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
   color: hsl(var(--color-white));
   font-weight: var(--fw-medium);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-md);
   @include respond-below(sm) {
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
+    font-size: var(--fs-sm);
   }
 
   span  {
@@ -67,8 +67,10 @@
 .description{
   color: hsl(var(--color-body));
   font-weight: var(--fw-regular);
-  font-size: var(--fs-xs);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
   @include respond-below(sm) {
-    display: none;
+    font-size: var(--fs-xs);
+    line-height: 1.4;
   }
 }
