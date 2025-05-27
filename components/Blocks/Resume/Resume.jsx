@@ -68,7 +68,7 @@ export default function Resume() {
                                 </p>
                             </div>
                             <figure className={styles.figure}>
-                                <Image src="/gallery/baranphoto.jpeg" alt="Baran Deniz" width={150} height={150}/>
+                                <Image src="/gallery/baranphoto.JPEG" alt="Baran Deniz" width={150} height={150}/>
                             </figure>
                         </div>
                         <div className={`${styles.card} ${styles.cardV2}`}>
