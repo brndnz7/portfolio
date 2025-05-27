@@ -1,7 +1,5 @@
 Hello 👋 
 
-[![Portfolio](https://github.com/yasingencnet/webkit/assets/5924267/993af830-5a00-42ed-9949-a86de938ef4f)](https://portfolio-theta-wine-40.vercel.app/)
-
 [![LinkedIn](https://github.com/yasingencnet/webkit/assets/5924267/63307c26-ed84-4027-b970-c6b972d4419e)](https://www.linkedin.com/in/baran-deniz-973ba923a/)
 [![GitHub](https://github.com/yasingencnet/webkit/assets/5924267/d99ace42-aaee-4aae-95f0-9149e975c261)](https://github.com/brndnz7)
 
