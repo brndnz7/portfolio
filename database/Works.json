@@ -1,5 +1,20 @@
 [
   {
+    "title": "New Horizon Association",
+    "image": "/reference/new-horizon.png",
+    "description": "Site web complet pour l'association New Horizon. Plateforme moderne avec système de gestion des membres, événements et donations. Architecture full-stack avec base de données robuste et interface utilisateur responsive.",
+    "url": "https://new-horizon-blond.vercel.app/",
+    "date": "2025",
+    "service": "Développement Full-Stack",
+    "technologies": ["Next.js", "React", "Prisma", "Supabase", "PostgreSQL", "TypeScript", "Tailwind CSS", "Vercel"],
+    "status": true,
+    "color": {
+      "h": "240",
+      "s": "70%",
+      "l": "55%"
+    }
+  },
+  {
     "title": "Trash Game",
     "image": "/reference/SAE401.png",
     "description": "Jeu web interactif de tri des déchets réalisé dans le cadre d'une SAÉ. Une expérience ludique pour sensibiliser au recyclage avec système de score et de niveaux.",
@@ -27,6 +42,21 @@
       "h": "150",
       "s": "50%",
       "l": "40%"
+    }
+  },
+  {
+    "title": "Jeu de Course Unity",
+    "image": "/reference/unity-racing.png",
+    "description": "Jeu de course multijoueur pour 2 joueurs développé avec Unity. Système de course compétitive avec physique réaliste, contrôles optimisés et interface multijoueur locale.",
+    "url": "https://drive.google.com/file/d/1zu7ilQVttQDq9jZhwJvQSl4xgnJ5sNfx/view?usp=drive_link",
+    "date": "2024",
+    "service": "Développement Jeu Vidéo",
+    "technologies": ["Unity", "C#", "Game Development"],
+    "status": true,
+    "color": {
+      "h": "220",
+      "s": "65%",
+      "l": "45%"
     }
   },
   {
