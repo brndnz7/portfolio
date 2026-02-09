@@ -1,72 +1,62 @@
 [
   {
-    "icon": "IconJS",
-    "image": "/icon/icon-js.svg",
-    "title": "JavaScript",
-    "subtitle": "Vanilla, jQuery",
-    "description": "Je donne vie aux sites web avec JavaScript, en ajoutant des fonctionnalités interactives et en optimisant les performances avec un code propre et efficace."
+    "title": "Next.js",
+    "subtitle": "Framework React",
+    "image": "/icon/next-js.svg",
+    "description": "Expertise en création d'applications web performantes et SEO-friendly avec Next.js 14, utilisant le Server Side Rendering et les dernières fonctionnalités React."
   },
   {
-    "icon": "IconPHP",
-    "image": "/icon/icon-php.svg",
-    "title": "PHP",
-    "subtitle": "Développement Backend",
-    "description": "Je développe des applications web robustes avec PHP, en créant des solutions backend performantes et sécurisées."
+    "title": "React",
+    "subtitle": "Développement UI",
+    "image": "/icon/icon-react.svg",
+    "description": "Conception d'interfaces utilisateur dynamiques et réactives avec React 18, gestion d'états complexes et composants réutilisables."
   },
   {
-    "icon": "IconCSS",
-    "image": "/icon/icon-css.svg",
-    "title": "CSS",
-    "subtitle": "Animations, Sass",
-    "description": "Je crée des interfaces modernes et responsives avec CSS, en utilisant les dernières fonctionnalités pour des designs élégants."
+    "title": "TypeScript",
+    "subtitle": "JavaScript Typé",
+    "image": "/icon/Typescript.png",
+    "description": "Utilisation de TypeScript pour un code robuste, maintenable et scalable, réduisant les erreurs et améliorant la productivité de développement."
   },
   {
-    "icon": "IconHTML",
-    "image": "/icon/icon-html.svg",
-    "title": "HTML",
-    "subtitle": "Balisage Sémantique",
-    "description": "Au-delà du simple balisage, HTML est crucial pour un web inclusif. Je structure le contenu avec soin pour une accessibilité universelle."
-  },
-  {
-    "icon": "IconSQL",
-    "image": "/icon/icon-sql.svg",
-    "title": "SQL",
-    "subtitle": "Gestion de Base de Données",
-    "description": "Je gère et optimise les bases de données avec SQL, en créant des structures de données efficaces et en écrivant des requêtes performantes."
-  },
-  {
-    "icon": "IconWordPress",
-    "image": "/icon/icon-wordpress.svg",
-    "title": "WordPress",
-    "subtitle": "Développement CMS",
-    "description": "Je développe des sites web personnalisés avec WordPress, en créant des thèmes et des plugins sur mesure pour répondre aux besoins spécifiques."
-  },
-  {
-    "icon": "IconFigma",
-    "image": "/icon/icon-figma.svg",
-    "title": "Design",
-    "subtitle": "Figma & Photoshop",
-    "description": "Bien que je ne sois pas un designer UI à temps plein, j'ai un œil pour l'esthétique, créant des interfaces visuellement attrayantes et conviviales."
-  },
-  {
-    "icon": "IconGit",
-    "image": "/icon/icon-git.svg",
-    "title": "Git",
-    "subtitle": "Gestion de Versions",
-    "description": "Je maîtrise Git pour la gestion de versions, en collaborant efficacement sur des projets et en maintenant un historique de code propre."
-  },
-  {
-    "icon": "IconSymfony",
-    "image": "/icon/icon-symfony.svg",
-    "title": "Symfony",
+    "title": "Laravel",
     "subtitle": "Framework PHP",
-    "description": "Je développe des applications web robustes avec Symfony, en suivant les meilleures pratiques et en utilisant ses composants puissants."
+    "image": "/icon/Laravel.png",
+    "description": "Développement d'applications backend puissantes avec Laravel, gestion d'API REST, authentification et bases de données complexes."
   },
   {
-    "icon": "IconTrello",
-    "image": "/icon/icon-trello.svg",
-    "title": "Trello",
-    "subtitle": "Gestion de Projet",
-    "description": "J'utilise Trello pour gérer efficacement les projets, en organisant les tâches et en suivant la progression des développements."
+    "title": "Symfony",
+    "subtitle": "Architecture PHP",
+    "image": "/icon/icon-symfony.svg",
+    "description": "Maîtrise du framework Symfony pour des projets d'entreprise structurés, suivant les standards MVC et les meilleures pratiques de sécurité."
+  },
+  {
+    "title": "WordPress",
+    "subtitle": "CMS & E-commerce",
+    "image": "/icon/icon-wordpress.svg",
+    "description": "Création de thèmes et plugins sur mesure, optimisation SEO et intégration WooCommerce pour des solutions e-commerce complètes."
+  },
+  {
+    "title": "Figma",
+    "subtitle": "UI/UX Design",
+    "image": "/icon/icon-figma.svg",
+    "description": "Prototypage rapide, création de maquettes haute fidélité et wireframes pour concevoir des expériences utilisateur intuitives."
+  },
+  {
+    "title": "Git & GitHub",
+    "subtitle": "Versionning",
+    "image": "/icon/icon-git.svg",
+    "description": "Gestion efficace du versionning de code, collaboration en équipe (Pull Requests, Code Review) et workflows CI/CD."
+  },
+  {
+    "title": "JavaScript",
+    "subtitle": "ES6+ Modern",
+    "image": "/icon/icon-js.svg",
+    "description": "Maîtrise approfondie du JavaScript moderne pour des interactions fluides, animations GSAP et logique côté client."
+  },
+  {
+    "title": "PHP",
+    "subtitle": "Backend Core",
+    "image": "/icon/icon-php.svg",
+    "description": "Solide base en PHP 8+ pour le développement serveur, la gestion de données et l'intégration de services tiers."
   }
 ]

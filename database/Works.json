@@ -1,8 +1,53 @@
 [
   {
+    "title": "TaskMaster - Gestion de Projet Agile",
+    "images": [
+      "/reference/showcase.png",
+      "/reference/taskmaster1.png",
+      "/reference/taskmaster2.png",
+      "/reference/taskmaster3.jpeg"
+    ],
+    "description": "Application de gestion de projet type Trello/Jira avec Kanban, sprints Agile, WebSocket temps réel et OAuth Google.",
+    "url": "https://taskmaster.denizb.etu.mmi-unistra.fr/",
+    "date": "2025",
+    "service": "Développement Full-Stack",
+    "technologies": ["Laravel", "React", "TypeScript", "WebSocket", "Tailwind"],
+    "status": true,
+    "color": {
+      "h": "280",
+      "s": "75%",
+      "l": "50%"
+    }
+  },
+  {
+    "title": "Usine à chocolat",
+    "images": [
+      "/reference/sae5012.png",
+      "/reference/sae5013.png",
+      "/reference/sae5014.png",
+      "/reference/sae5015.png"
+    ],
+    "description": "Application web pour les JPO de l'IUT permettant aux visiteurs de commander des chocolats via une machine connectée. Gestion multi-stations, QR codes et suivi temps réel.",
+    "url": "https://sae501-2.denizb.etu.mmi-unistra.fr/",
+    "date": "2025",
+    "service": "Développement Full-Stack",
+    "technologies": ["Laravel", "Livewire", "Tailwind CSS", "Vite", "SQLite", "QR Code"],
+    "status": true,
+    "color": {
+      "h": "30",
+      "s": "80%",
+      "l": "45%"
+    }
+  },
+  {
     "title": "New Horizon Association",
-    "image": "/reference/new-horizon.png",
-    "description": "Site web complet pour l'association New Horizon. Plateforme moderne avec système de gestion des membres, événements et donations. Architecture full-stack avec base de données robuste et interface utilisateur responsive.",
+    "images": [
+      "/reference/new-horizon.png",
+      "/reference/newhorizon4.png",
+      "/reference/newhorizon2.png",
+      "/reference/newhorizon3.png"
+    ],
+    "description": "Site web complet pour l'association New Horizon. Plateforme moderne avec système de gestion des membres, événements et donations. Architecture full-stack avec base de données robuste.",
     "url": "https://new-horizon-blond.vercel.app/",
     "date": "2025",
     "service": "Développement Full-Stack",
@@ -15,25 +60,15 @@
     }
   },
   {
-    "title": "Trash Game",
-    "image": "/reference/SAE401.png",
-    "description": "Jeu web interactif de tri des déchets réalisé dans le cadre d'une SAÉ. Une expérience ludique pour sensibiliser au recyclage avec système de score et de niveaux.",
-    "url": "https://trashgame.aslan.etu.mmi-unistra.fr/",
-    "date": "2024",
-    "service": "Développement Full-Stack",
-    "technologies": ["HTML", "CSS", "PHP", "SQL", "Twig", "Symfony", "JavaScript", "Git"],
-    "status": true,
-    "color": {
-      "h": "120",
-      "s": "60%",
-      "l": "50%"
-    }
-  },
-  {
     "title": "Ecostay Global",
-    "image": "/reference/ecostay.png",
+    "images": [
+      "/reference/ecostay.png",
+      "/reference/ecostay4.png",
+      "/reference/ecostay2.png",
+      "/reference/ecostay3.png"
+    ],
     "description": "Site vitrine pour une boutique en ligne spécialisée dans les bijoux.",
-    "url": "https://ecostay-global.com",
+    "url": "https://ecostay-global.com/",
     "date": "2023",
     "service": "Développement WordPress",
     "technologies": ["WordPress", "WooCommerce", "Duplicator", "PHP", "CSS"],
@@ -46,7 +81,8 @@
   },
   {
     "title": "Jeu de Course Unity",
-    "image": "/reference/unity-racing.png",
+    "image": "/reference/vitessemax.png",
+    "video": "/reference/unity-racing.mp4",
     "description": "Jeu de course multijoueur pour 2 joueurs développé avec Unity. Système de course compétitive avec physique réaliste, contrôles optimisés et interface multijoueur locale.",
     "url": "https://drive.google.com/file/d/1zu7ilQVttQDq9jZhwJvQSl4xgnJ5sNfx/view?usp=drive_link",
     "date": "2024",
@@ -56,21 +92,6 @@
     "color": {
       "h": "220",
       "s": "65%",
-      "l": "45%"
-    }
-  },
-  {
-    "title": "Site de Couture",
-    "image": "/reference/couture.png",
-    "description": "Plateforme d'échange et de réservation d'objets de couture. Système complet avec gestion des catégories, authentification multi-rôles, réservations et interface d'administration.",
-    "url": "https://info4.denizb.etu.mmi-unistra.fr/",
-    "date": "2024",
-    "service": "Développement Full-Stack",
-    "technologies": ["Symfony", "PHP", "Twig", "Doctrine", "MySQL", "CSS", "JavaScript", "Bootstrap"],
-    "status": true,
-    "color": {
-      "h": "280",
-      "s": "55%",
       "l": "45%"
     }
   },
@@ -87,81 +108,6 @@
       "h": "100",
       "s": "70%",
       "l": "35%"
-    }
-  },
-  {
-    "title": "Ammo Stock",
-    "image": "/reference/sae205.png",
-    "description": "Site réalisé dans le cadre d'une SAÉ durant ma formation avec système de recherche et filtres avancés.",
-    "url": "https://ammostock.denizb.etu.mmi-unistra.fr/",
-    "date": "2023",
-    "service": "Développement Full-Stack",
-    "technologies": ["HTML", "CSS", "PHP", "SQL", "Twig"],
-    "status": true,
-    "color": {
-      "h": "200",
-      "s": "60%",
-      "l": "45%"
-    }
-  },
-  {
-    "title": "La Montagne des Singes",
-    "image": "/reference/sae202.png",
-    "description": "Site web pour le parc animalier de la Montagne des Singes réalisé dans le cadre d'une SAÉ. Site multilingue avec présentation des espèces, informations pratiques et billetterie en ligne.",
-    "url": "https://denizb.etu.mmi-unistra.fr/lamontagnesdesinges/",
-    "date": "2023",
-    "service": "Développement WordPress",
-    "technologies": ["WordPress", "Elementor", "Polylang", "Duplicator", "CSS"],
-    "status": true,
-    "color": {
-      "h": "30",
-      "s": "70%",
-      "l": "50%"
-    }
-  },
-  {
-    "title": "Jujutsu Kaisen",
-    "image": "/reference/jjk.png",
-    "description": "Site web dédié à l'univers de Jujutsu Kaisen avec présentation des personnages, techniques et histoires. Design immersif avec animations et interface interactive.",
-    "url": "https://denizb.etu.mmi-unistra.fr/site%20html-css/DENIZ_Baran_V7/",
-    "date": "2023",
-    "service": "Développement Front-End",
-    "technologies": ["HTML", "CSS", "Twig", "PHP", "JavaScript"],
-    "status": true,
-    "color": {
-      "h": "270",
-      "s": "60%",
-      "l": "40%"
-    }
-  },
-  {
-    "title": "Site Olfactif",
-    "image": "/reference/olfactif.png",
-    "description": "Premier projet web explorant l'univers des parfums et senteurs. Site artistique avec design épuré et navigation intuitive pour découvrir différentes fragrances.",
-    "url": "https://denizb.etu.mmi-unistra.fr/site%20html-css/WEB1_Deniz_Baran/",
-    "date": "2022",
-    "service": "Développement Front-End",
-    "technologies": ["HTML", "CSS"],
-    "status": true,
-    "color": {
-      "h": "180",
-      "s": "50%",
-      "l": "45%"
-    }
-  },
-  {
-    "title": "Vitesse Max",
-    "image": "/reference/vitessemax.png",
-    "description": "Blog automobile passionné dédié aux voitures de sport et à l'actualité automotive. Première expérience de création de contenu avec interface de publication et gestion de commentaires.",
-    "url": "https://vitessemax.wordpress.com",
-    "date": "2022",
-    "service": "WordPress",
-    "technologies": ["WordPress", "CSS"],
-    "status": true,
-    "color": {
-      "h": "0",
-      "s": "70%",
-      "l": "50%"
     }
   }
 ]

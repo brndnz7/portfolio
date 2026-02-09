@@ -15,12 +15,6 @@ export default function PreLoader({ onComplete }) {
             const tl = gsap.timeline();
             const tl2 = gsap.timeline();
 
-            // Blobs
-            tl.to(`.${styles.badge}`, {
-                scale: 1,
-                duration: 1,
-            });
-
             // Loader
             tl.to(`.${styles.progress}`, {
                 autoAlpha: 1,

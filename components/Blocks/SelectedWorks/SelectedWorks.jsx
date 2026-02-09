@@ -1,12 +1,10 @@
 "use client";
 
 import React, { useRef, useState } from 'react';
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 import Image from "next/image";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import gsap from "gsap";
 
 import Works from '@/database/Works.json';
 import commonConfig from "@/database/config/metadata.json";
@@ -14,222 +12,224 @@ import commonConfig from "@/database/config/metadata.json";
 import styles from './SelectedWorks.module.scss';
 
 import Title from "@/components/UI/Elements/Title/Title";
-import Magnet from "@/components/UI/Magnet/Magnet";
 import FancyButton from "@/components/UI/Elements/Button/Button";
 import TextReveal from "@/components/UI/Elements/TextReveal/TextReveal";
-import Blobs from "@/components/UI/Elements/Blobs/Blobs";
 
 export default function SelectedWorks() {
-    const galleryContainer = useRef();
-    const bg = useRef();
-    const container = useRef();
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [visibleProjects, setVisibleProjects] = useState(3);
-    const [isMobile, setIsMobile] = useState(false);
-    const { contextSafe } = useGSAP({scope: container});
-    
     const activeWorks = Works.filter(work => work.status);
-    const showMoreButton = isMobile && visibleProjects < activeWorks.length;
+    const [lightbox, setLightbox] = useState({ isOpen: false, images: [], currentIndex: 0 });
 
-    const scrollToNext = () => {
-        const nextIndex = currentIndex + 1;
-        if (nextIndex < activeWorks.length) {
-            setCurrentIndex(nextIndex);
-            const nextElement = galleryContainer.current.children[nextIndex];
-            if (nextElement) {
-                gsap.to(galleryContainer.current, {
-                    x: -nextElement.offsetLeft,
-                    duration: 0.8,
-                    ease: "power2.inOut"
-                });
-            }
-        }
+    const openLightbox = (images, index) => {
+        setLightbox({ isOpen: true, images, currentIndex: index });
+        document.body.style.overflow = 'hidden';
     };
 
-    const scrollToPrev = () => {
-        const prevIndex = currentIndex - 1;
-        if (prevIndex >= 0) {
-            setCurrentIndex(prevIndex);
-            const prevElement = galleryContainer.current.children[prevIndex];
-            if (prevElement) {
-                gsap.to(galleryContainer.current, {
-                    x: -prevElement.offsetLeft,
-                    duration: 0.8,
-                    ease: "power2.inOut"
-                });
-            }
-        }
+    const closeLightbox = () => {
+        setLightbox({ isOpen: false, images: [], currentIndex: 0 });
+        document.body.style.overflow = 'auto';
     };
 
-    const showMoreProjects = () => {
-        setVisibleProjects(prev => Math.min(prev + 3, activeWorks.length));
+    const nextImage = () => {
+        setLightbox(prev => ({ ...prev, currentIndex: (prev.currentIndex + 1) % prev.images.length }));
     };
 
-    // Détection mobile/desktop
-    React.useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-        
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
-
-    useGSAP(() => {
-        gsap.registerPlugin(ScrollTrigger);
-        const gallery = galleryContainer.current;
-
-        // BG Animation
-        gsap.to(bg.current, {
-            scrollTrigger: {
-                trigger: container.current,
-                start: 'top top',
-                end: 'bottom top',
-                scrub: true,
-            },
-            clipPath: 'inset(0px 0px round 3rem 3rem 0rem 0rem)',
-        });
-
-        // Section Pinning - seulement sur desktop
-        const mm = gsap.matchMedia();
-        
-        mm.add("(min-width: 768px)", () => {
-            ScrollTrigger.create({
-                trigger: container.current,
-                start: 'top top',
-                end: 'bottom bottom',
-                pin: true,
-                pinSpacing: true,
-            });
-
-            // Désactiver le scroll horizontal - seulement sur desktop
-            ScrollTrigger.create({
-                trigger: gallery,
-                start: 'top top',
-                end: 'bottom bottom',
-                onEnter: () => {
-                    document.body.style.overflow = 'hidden';
-                },
-                onLeave: () => {
-                    document.body.style.overflow = '';
-                },
-                onEnterBack: () => {
-                    document.body.style.overflow = 'hidden';
-                },
-                onLeaveBack: () => {
-                    document.body.style.overflow = '';
-                }
-            });
-        });
-
-    }, { scope: galleryContainer });
+    const prevImage = () => {
+        setLightbox(prev => ({ 
+            ...prev, 
+            currentIndex: prev.currentIndex === 0 ? prev.images.length - 1 : prev.currentIndex - 1 
+        }));
+    };
 
     return (
-        <section className={styles.section} id={'works'} ref={container}>
-            <div className={styles.bg} ref={bg}>
-            </div>
-            <div className={styles.xScrollContainer} ref={galleryContainer}>
+        <section className={styles.section} id={'works'}>
+            <div className={styles.container}>
                 <header className={styles.header}>
-                    <Title color="white">Mes <br/>Travaux</Title>
-                    <TextReveal className={styles.description}>
-                        Une sélection de mes meilleurs projets et réalisations.
-                    </TextReveal>
-                    <div className={styles.contactButton}>
-                        <FancyButton theme='button-2' link={`mailto:${commonConfig.personal.email}`} target={'_blank'}>
-                            Contact
-                        </FancyButton>
+                    <Title color="white">Sélection<br/>Récente</Title>
+                    <div className={styles.headerContent}>
+                        <TextReveal className={styles.description}>
+                            Une immersion dans mes projets les plus ambitieux.
+                            Design, développement et interaction.
+                        </TextReveal>
                     </div>
-
-                    <Blobs type={'v2'}/>
                 </header>
 
-                {activeWorks.slice(0, isMobile ? visibleProjects : activeWorks.length).map((work, index) => {
-                    const lightness = parseFloat(work.color.l);
-                    return (
-                      <div key={index} className={`${styles.browser}`}
-                        style={{'--h': work.color.h, '--s': work.color.s, '--l': work.color.l}}>
-                          <div className={`${styles.browserHeader} ${lightness >= 50 ? styles.dark : ''}`}>
-                              <div className={styles.headerContent}>
-                                  <h3 className={styles.title}>{work.title}</h3>
-                                  <div className={styles.technologies}>
-                                      {work.technologies && work.technologies.map((tech, techIndex) => (
-                                          <span key={techIndex} className={styles.tech}>{tech}</span>
-                                      ))}
-                                  </div>
-                                  {work.description && (
-                                      <p className={styles.workDescription}>{work.description}</p>
-                                  )}
-                              </div>
+                <div className={styles.gallery}>
+                    {activeWorks.map((work, index) => {
+                        return (
+                            <Card 
+                                key={index} 
+                                i={index} 
+                                {...work} 
+                                onImageClick={(images, imgIndex) => openLightbox(images, imgIndex)}
+                            />
+                        );
+                    })}
+                </div>
+            </div>
 
-                              {work.url && work.url.trim() !== '' && (
-                                <Magnet>
-                                    <Link target={'_blank'} className={styles.redirect} href={work.url}>
-                                        <span>Visiter</span>
-                                        <svg width="93" height="93" viewBox="0 0 93 93" fill="none"
-                                          xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="93" height="93" rx="46.5" fill="white"/>
-                                            <path
-                                              d="M30.0541 60.6172C29.2717 61.3969 29.2717 62.6611 30.0541 63.4407C30.8365 64.2204 32.105 64.2204 32.8874 63.4407L30.0541 60.6172ZM64.56 31.0512C64.56 29.9486 63.663 29.0547 62.5565 29.0547H44.5252C43.4188 29.0547 42.5218 29.9486 42.5218 31.0512C42.5218 32.1538 43.4188 33.0477 44.5252 33.0477H60.553V49.0199C60.553 50.1225 61.45 51.0164 62.5565 51.0164C63.663 51.0164 64.56 50.1225 64.56 49.0199V31.0512ZM32.8874 63.4407L63.9732 32.463L61.1398 29.6395L30.0541 60.6172L32.8874 63.4407Z"
-                                              fill="black"/>
-                                        </svg>
-                                    </Link>
-                                </Magnet>
-                              )}
-                          </div>
-                          <div className={styles.browserBody}>
-                              <Image
-                                src={work.image}
-                                alt={work.title}
-                                sizes="100vw"
-                                style={{
-                                    width: '100%',
-                                    height: 'auto',
-                                }}
-                                width={1920}
-                                height={1080}
-                                className={styles.image}
-                                loading={'lazy'}
-                              />
-                          </div>
-                      </div>
-                    );
-                })}
-                
-                {showMoreButton && (
-                    <div className={styles.showMoreContainer}>
-                        <button 
-                            className={styles.showMoreButton}
-                            onClick={showMoreProjects}
-                        >
-                            <span className={styles.plusIcon}>+</span>
-                            <span className={styles.showMoreText}>Voir plus</span>
-                        </button>
-                    </div>
+            {/* Lightbox */}
+            <AnimatePresence>
+                {lightbox.isOpen && (
+                    <motion.div 
+                        className={styles.lightbox}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={closeLightbox}
+                    >
+                        <div className={styles.lightboxContent} onClick={e => e.stopPropagation()}>
+                            <button className={styles.closeBtn} onClick={closeLightbox}>×</button>
+                            
+                            {lightbox.images.length > 1 && (
+                                <button className={styles.navBtn} onClick={prevImage}>‹</button>
+                            )}
+                            
+                            <div className={styles.lightboxImageWrapper}>
+                                <Image
+                                    src={lightbox.images[lightbox.currentIndex]}
+                                    alt="Project view"
+                                    fill
+                                    quality={100}
+                                    sizes="90vw"
+                                    className={styles.lightboxImage}
+                                />
+                            </div>
+                            
+                            {lightbox.images.length > 1 && (
+                                <button className={styles.navBtn} onClick={nextImage}>›</button>
+                            )}
+                            
+                            {lightbox.images.length > 1 && (
+                                <div className={styles.thumbnails}>
+                                    {lightbox.images.map((img, idx) => (
+                                        <div 
+                                            key={idx}
+                                            className={`${styles.thumb} ${idx === lightbox.currentIndex ? styles.active : ''}`}
+                                            onClick={() => setLightbox(prev => ({ ...prev, currentIndex: idx }))}
+                                        >
+                                            <Image src={img} alt="" fill quality={80} sizes="100px" />
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                            
+                            <div className={styles.counter}>
+                                {lightbox.currentIndex + 1} / {lightbox.images.length}
+                            </div>
+                        </div>
+                    </motion.div>
                 )}
-            </div>
-            <div className={styles.navigation}>
-                <button 
-                    className={`${styles.navButton} ${styles.prevButton}`} 
-                    onClick={scrollToPrev}
-                    disabled={currentIndex === 0}
-                    style={{ opacity: currentIndex === 0 ? 0 : 1 }}
-                >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                </button>
-                <button 
-                    className={`${styles.navButton} ${styles.nextButton}`} 
-                    onClick={scrollToNext}
-                    disabled={currentIndex === activeWorks.length - 1}
-                >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                </button>
-            </div>
+            </AnimatePresence>
         </section>
     );
+}
+
+const Card = ({i, title, description, technologies, url, image, images, video, color, date, service, onImageClick}) => {
+    const glowColor = `hsla(${color.h}, ${color.s}, ${color.l}, 0.5)`;
+    
+    // Déterminer si on utilise un tableau d'images ou une image simple
+    const projectImages = images || (image ? [image] : []);
+    const hasMultipleImages = projectImages.length > 1;
+
+    return (
+        <div className={styles.cardContainer}>
+            <div 
+                className={styles.card} 
+                style={{
+                    '--glow-color': glowColor,
+                    transform: `translateY(${i * 20}px)`
+                }}
+            >
+                <div className={styles.cardBlob}></div>
+
+                <div className={styles.cardBody}>
+                    <div className={styles.meta}>
+                        <span className={styles.year}>{date}</span>
+                        <div className={styles.separator}></div>
+                        <span className={styles.service}>{service}</span>
+                    </div>
+                    
+                    <h2 className={styles.title}>
+                        {title}
+                    </h2>
+                    
+                    <ul className={styles.technologies}>
+                        {technologies && technologies.slice(0, 4).map((tech, index) => (
+                            <li key={index} className={styles.tech}>
+                                {tech}
+                            </li>
+                        ))}
+                    </ul>
+
+                    <p className={styles.projectDesc}>
+                        {description}
+                    </p>
+
+                    <div className={styles.actions}>
+                        {url && (
+                             <FancyButton theme='button-1' link={url} target={'_blank'}>
+                                 Voir le projet
+                             </FancyButton>
+                        )}
+                    </div>
+                </div>
+                
+                <div className={styles.cardImage}>
+                    {video ? (
+                        <div className={styles.imageInner}>
+                            <video
+                                src={video}
+                                poster={projectImages[0]}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className={styles.img}
+                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                            />
+                        </div>
+                    ) : hasMultipleImages ? (
+                        // Grille de 4 images
+                        <div className={styles.imageGrid}>
+                            {projectImages.slice(0, 4).map((img, idx) => (
+                                <div 
+                                    key={idx} 
+                                    className={styles.gridItem}
+                                    onClick={() => onImageClick(projectImages, idx)}
+                                >
+                                    <Image
+                                        src={img}
+                                        alt={`${title} - view ${idx + 1}`}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 50vw" 
+                                        quality={100}
+                                        className={styles.img}
+                                        style={{ objectFit: 'cover' }}
+                                    />
+                                    <div className={styles.zoomIcon}>+</div>
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        // Image simple
+                        <div className={styles.imageInner} onClick={() => onImageClick(projectImages, 0)}>
+                            <Image
+                                src={projectImages[0]}
+                                alt={title}
+                                fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                quality={90}
+                                className={styles.img}
+                                style={{ objectFit: 'cover' }}
+                                priority={i < 2}
+                            />
+                            <div className={styles.zoomOverlay}>
+                                <span>Cliquer pour agrandir</span>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </div>
+    )
 }
