@@ -41,7 +41,7 @@
     font-weight: var(--fw-bold);
     font-size: var(--fs-xml);
     line-height: 1;
-    opacity: 0;
+    opacity: 1;
     transition: all 0.3s ease-in;
     color: hsl(var(--color-white));
     @include respond-above(xl) {

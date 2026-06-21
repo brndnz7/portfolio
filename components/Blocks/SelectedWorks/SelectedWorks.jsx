@@ -1,235 +1,185 @@
-"use client";
+'use client';
 
-import React, { useRef, useState } from 'react';
-import Image from "next/image";
-import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import gsap from "gsap";
-
-import Works from '@/database/Works.json';
-import commonConfig from "@/database/config/metadata.json";
-
+import { useMemo, useRef, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { AnimatePresence, motion } from 'framer-motion';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SiGooglemaps, SiLaravel, SiLinux, SiNextdotjs, SiReact, SiRiotgames, SiTauri, SiUnity } from 'react-icons/si';
+import { TbApi, TbArrowLeft, TbArrowRight, TbStack2 } from 'react-icons/tb';
+import { projects } from '@/database/projects';
+import Title from '@/components/UI/Elements/Title/Title';
+import TextReveal from '@/components/UI/Elements/TextReveal/TextReveal';
 import styles from './SelectedWorks.module.scss';
 
-import Title from "@/components/UI/Elements/Title/Title";
-import FancyButton from "@/components/UI/Elements/Button/Button";
-import TextReveal from "@/components/UI/Elements/TextReveal/TextReveal";
+const personalSlugs = new Set(['geodevinette', 'counterlol', 'evolve2d', 'trk-lol', 'zen-lol', 'new-horizon', 'ecostay', 'green-life']);
+const filters = [
+  { id: 'all', label: 'Tous', icon: TbStack2 },
+  { id: 'web', label: 'React et web', icon: SiReact },
+  { id: 'api', label: 'API', icon: TbApi },
+  { id: 'system', label: 'Linux et système', icon: SiLinux },
+  { id: 'game', label: 'Jeu vidéo', icon: SiUnity }
+];
 
-export default function SelectedWorks() {
-    const activeWorks = Works.filter(work => work.status);
-    const [lightbox, setLightbox] = useState({ isOpen: false, images: [], currentIndex: 0 });
-
-    const openLightbox = (images, index) => {
-        setLightbox({ isOpen: true, images, currentIndex: index });
-        document.body.style.overflow = 'hidden';
-    };
-
-    const closeLightbox = () => {
-        setLightbox({ isOpen: false, images: [], currentIndex: 0 });
-        document.body.style.overflow = 'auto';
-    };
-
-    const nextImage = () => {
-        setLightbox(prev => ({ ...prev, currentIndex: (prev.currentIndex + 1) % prev.images.length }));
-    };
-
-    const prevImage = () => {
-        setLightbox(prev => ({ 
-            ...prev, 
-            currentIndex: prev.currentIndex === 0 ? prev.images.length - 1 : prev.currentIndex - 1 
-        }));
-    };
-
-    return (
-        <section className={styles.section} id={'works'}>
-            <div className={styles.container}>
-                <header className={styles.header}>
-                    <Title color="white">Sélection<br/>Récente</Title>
-                    <div className={styles.headerContent}>
-                        <TextReveal className={styles.description}>
-                            Une immersion dans mes projets les plus ambitieux.
-                            Design, développement et interaction.
-                        </TextReveal>
-                    </div>
-                </header>
-
-                <div className={styles.gallery}>
-                    {activeWorks.map((work, index) => {
-                        return (
-                            <Card 
-                                key={index} 
-                                i={index} 
-                                {...work} 
-                                onImageClick={(images, imgIndex) => openLightbox(images, imgIndex)}
-                            />
-                        );
-                    })}
-                </div>
-            </div>
-
-            {/* Lightbox */}
-            <AnimatePresence>
-                {lightbox.isOpen && (
-                    <motion.div 
-                        className={styles.lightbox}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={closeLightbox}
-                    >
-                        <div className={styles.lightboxContent} onClick={e => e.stopPropagation()}>
-                            <button className={styles.closeBtn} onClick={closeLightbox}>×</button>
-                            
-                            {lightbox.images.length > 1 && (
-                                <button className={styles.navBtn} onClick={prevImage}>‹</button>
-                            )}
-                            
-                            <div className={styles.lightboxImageWrapper}>
-                                <Image
-                                    src={lightbox.images[lightbox.currentIndex]}
-                                    alt="Project view"
-                                    fill
-                                    quality={100}
-                                    sizes="90vw"
-                                    className={styles.lightboxImage}
-                                />
-                            </div>
-                            
-                            {lightbox.images.length > 1 && (
-                                <button className={styles.navBtn} onClick={nextImage}>›</button>
-                            )}
-                            
-                            {lightbox.images.length > 1 && (
-                                <div className={styles.thumbnails}>
-                                    {lightbox.images.map((img, idx) => (
-                                        <div 
-                                            key={idx}
-                                            className={`${styles.thumb} ${idx === lightbox.currentIndex ? styles.active : ''}`}
-                                            onClick={() => setLightbox(prev => ({ ...prev, currentIndex: idx }))}
-                                        >
-                                            <Image src={img} alt="" fill quality={80} sizes="100px" />
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                            
-                            <div className={styles.counter}>
-                                {lightbox.currentIndex + 1} / {lightbox.images.length}
-                            </div>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </section>
-    );
+function matchesFilter(project, filter) {
+  if (filter === 'all') return true;
+  const haystack = `${project.title} ${project.category} ${project.stack.join(' ')}`.toLowerCase();
+  if (filter === 'api') return /api|odoo|ebay|street view/.test(haystack);
+  if (filter === 'system') return /debian|python|shell|système|diagnostic/.test(haystack);
+  if (filter === 'game') return /jeu|unity|game|2d|idle/.test(haystack);
+  return /web|react|next|laravel|wordpress|shopify|tauri|interface/.test(haystack);
 }
 
-const Card = ({i, title, description, technologies, url, image, images, video, color, date, service, onImageClick}) => {
-    const glowColor = `hsla(${color.h}, ${color.s}, ${color.l}, 0.5)`;
-    
-    // Déterminer si on utilise un tableau d'images ou une image simple
-    const projectImages = images || (image ? [image] : []);
-    const hasMultipleImages = projectImages.length > 1;
+function getProjectIcon(project) {
+  if (project.slug === 'itgreen-os') return SiLinux;
+  if (project.slug === 'itgreen-intranet') return TbApi;
+  if (project.slug === 'geodevinette') return SiGooglemaps;
+  if (project.slug === 'taskmaster' || project.slug === 'usine-a-chocolat') return SiLaravel;
+  if (project.slug === 'jeu-course-unity' || project.slug === 'evolve2d') return SiUnity;
+  if (project.slug === 'counterlol' || project.slug === 'trk-lol') return SiRiotgames;
+  if (project.slug === 'zen-lol') return SiTauri;
+  return SiNextdotjs;
+}
 
-    return (
-        <div className={styles.cardContainer}>
-            <div 
-                className={styles.card} 
-                style={{
-                    '--glow-color': glowColor,
-                    transform: `translateY(${i * 20}px)`
-                }}
-            >
-                <div className={styles.cardBlob}></div>
+export default function SelectedWorks() {
+  const sectionRef = useRef(null);
+  const dragStart = useRef(null);
+  const [group, setGroup] = useState('academic');
+  const [filter, setFilter] = useState('all');
+  const [active, setActive] = useState(0);
 
-                <div className={styles.cardBody}>
-                    <div className={styles.meta}>
-                        <span className={styles.year}>{date}</span>
-                        <div className={styles.separator}></div>
-                        <span className={styles.service}>{service}</span>
-                    </div>
-                    
-                    <h2 className={styles.title}>
-                        {title}
-                    </h2>
-                    
-                    <ul className={styles.technologies}>
-                        {technologies && technologies.slice(0, 4).map((tech, index) => (
-                            <li key={index} className={styles.tech}>
-                                {tech}
-                            </li>
-                        ))}
-                    </ul>
+  const visibleProjects = useMemo(() => projects.filter((project) => {
+    if (project.tier === 'archive' && !['new-horizon', 'jeu-course-unity'].includes(project.slug)) return false;
+    const isPersonal = personalSlugs.has(project.slug);
+    return (group === 'personal' ? isPersonal : !isPersonal) && matchesFilter(project, filter);
+  }), [group, filter]);
 
-                    <p className={styles.projectDesc}>
-                        {description}
-                    </p>
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from(`.${styles.browser}`, {
+      y: 70,
+      autoAlpha: 0,
+      duration: .9,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: sectionRef.current, start: 'top 68%' }
+    });
+  }, { scope: sectionRef });
 
-                    <div className={styles.actions}>
-                        {url && (
-                             <FancyButton theme='button-1' link={url} target={'_blank'}>
-                                 Voir le projet
-                             </FancyButton>
-                        )}
-                    </div>
-                </div>
-                
-                <div className={styles.cardImage}>
-                    {video ? (
-                        <div className={styles.imageInner}>
-                            <video
-                                src={video}
-                                poster={projectImages[0]}
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                className={styles.img}
-                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                            />
-                        </div>
-                    ) : hasMultipleImages ? (
-                        // Grille de 4 images
-                        <div className={styles.imageGrid}>
-                            {projectImages.slice(0, 4).map((img, idx) => (
-                                <div 
-                                    key={idx} 
-                                    className={styles.gridItem}
-                                    onClick={() => onImageClick(projectImages, idx)}
-                                >
-                                    <Image
-                                        src={img}
-                                        alt={`${title} - view ${idx + 1}`}
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, 50vw" 
-                                        quality={100}
-                                        className={styles.img}
-                                        style={{ objectFit: 'cover' }}
-                                    />
-                                    <div className={styles.zoomIcon}>+</div>
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        // Image simple
-                        <div className={styles.imageInner} onClick={() => onImageClick(projectImages, 0)}>
-                            <Image
-                                src={projectImages[0]}
-                                alt={title}
-                                fill
-                                sizes="(max-width: 768px) 100vw, 50vw"
-                                quality={90}
-                                className={styles.img}
-                                style={{ objectFit: 'cover' }}
-                                priority={i < 2}
-                            />
-                            <div className={styles.zoomOverlay}>
-                                <span>Cliquer pour agrandir</span>
-                            </div>
-                        </div>
-                    )}
-                </div>
-            </div>
+  const selectGroup = (value) => { setGroup(value); setFilter('all'); setActive(0); };
+  const selectFilter = (value) => { setFilter(value); setActive(0); };
+  const move = (direction) => {
+    if (!visibleProjects.length) return;
+    setActive((current) => (current + direction + visibleProjects.length) % visibleProjects.length);
+  };
+
+  const positionOf = (index) => {
+    let position = index - active;
+    const total = visibleProjects.length;
+    if (position > total / 2) position -= total;
+    if (position < -total / 2) position += total;
+    return position;
+  };
+
+  return (
+    <section className={styles.section} id="works" ref={sectionRef}>
+      <header className={styles.header}>
+        <Title color="white">Sélection<br />Récente</Title>
+        <TextReveal className={styles.description}>
+          Des projets académiques, professionnels et personnels. Chaque carte mène vers une étude de cas qui documente le besoin, les choix et les résultats.
+        </TextReveal>
+      </header>
+
+      <div className={styles.browser}>
+        <nav className={styles.commandBar} aria-label="Explorer les projets">
+          <div className={styles.tabs} role="tablist" aria-label="Type de projet">
+            <button type="button" role="tab" aria-selected={group === 'academic'} onClick={() => selectGroup('academic')}>Académique & pro</button>
+            <button type="button" role="tab" aria-selected={group === 'personal'} onClick={() => selectGroup('personal')}>Personnel</button>
+          </div>
+
+          <div className={styles.filterMenu} aria-label="Filtrer par technologie">
+            {filters.map((item) => {
+              const Icon = item.icon;
+              return <button type="button" key={item.id} className={filter === item.id ? styles.isActive : ''} onClick={() => selectFilter(item.id)} aria-label={`Filtrer par ${item.label}`} aria-pressed={filter === item.id}><Icon aria-hidden="true" /><small>{item.label}</small></button>;
+            })}
+          </div>
+
+          <div className={styles.projectMenu} aria-label="Choisir un projet">
+            {visibleProjects.map((project, index) => {
+              const ProjectIcon = getProjectIcon(project);
+              return <button type="button" key={project.slug} onClick={() => setActive(index)} aria-current={active === index ? 'true' : undefined}>
+                <ProjectIcon aria-hidden="true" />{project.title}
+              </button>;
+            })}
+          </div>
+        </nav>
+
+        <div
+          className={styles.stage}
+          tabIndex={0}
+          aria-label="Carrousel spatial des projets"
+          onKeyDown={(event) => {
+            if (event.key === 'ArrowRight') { event.preventDefault(); move(1); }
+            if (event.key === 'ArrowLeft') { event.preventDefault(); move(-1); }
+          }}
+          onPointerDown={(event) => { dragStart.current = event.clientX; }}
+          onPointerUp={(event) => {
+            if (dragStart.current === null) return;
+            const delta = event.clientX - dragStart.current;
+            if (Math.abs(delta) > 45) move(delta < 0 ? 1 : -1);
+            dragStart.current = null;
+          }}
+        >
+          <AnimatePresence mode="popLayout">
+            {visibleProjects.map((project, index) => {
+              const position = positionOf(index);
+              const isActive = position === 0;
+              if (Math.abs(position) > 1) return null;
+              return (
+                <motion.article
+                  layout
+                  key={project.slug}
+                  className={styles.projectCard}
+                  data-active={isActive}
+                  initial={{ opacity: 0, scale: .78 }}
+                  animate={{
+                    x: `${position * 69}%`,
+                    y: isActive ? 0 : 24,
+                    scale: isActive ? 1 : .76,
+                    rotateY: position * -18,
+                    opacity: isActive ? 1 : .28,
+                    zIndex: isActive ? 10 : 3
+                  }}
+                  exit={{ opacity: 0, scale: .7 }}
+                  transition={{ type: 'spring', stiffness: 180, damping: 25 }}
+                  onClick={() => !isActive && setActive(index)}
+                  aria-hidden={!isActive}
+                >
+                  <Image src={project.images[0]} alt={`Aperçu de ${project.title}`} fill sizes="(max-width: 800px) 88vw, 62vw" priority={isActive} />
+                  <div className={styles.cardShade} />
+                  {project.mediaPending && <span className={styles.placeholder}>Visuel temporaire</span>}
+                  <div className={styles.cardCopy}>
+                    <span>{project.eyebrow}</span>
+                    <h2>{project.title}</h2>
+                    <p>{project.summary}</p>
+                    <ul>{project.stack.slice(0, 4).map((tech) => <li key={tech}>{tech}</li>)}</ul>
+                    {isActive && <Link href={`/projets/${project.slug}`}>Voir l’étude de cas</Link>}
+                  </div>
+                </motion.article>
+              );
+            })}
+          </AnimatePresence>
+
+          {!visibleProjects.length && <p className={styles.empty}>Aucun projet dans ce filtre.</p>}
+
+          {visibleProjects.length > 1 && <div className={styles.controls}>
+            <button type="button" onClick={() => move(-1)} aria-label="Projet précédent"><TbArrowLeft aria-hidden="true" /><span>Précédent</span></button>
+            <div><strong>{String(active + 1).padStart(2, '0')}</strong><i /><span>{String(visibleProjects.length).padStart(2, '0')}</span></div>
+            <button type="button" onClick={() => move(1)} aria-label="Projet suivant"><span>Suivant</span><TbArrowRight aria-hidden="true" /></button>
+          </div>}
         </div>
-    )
+      </div>
+    </section>
+  );
 }

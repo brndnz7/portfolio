@@ -1,0 +1,153 @@
+.spotlight,
+.lab {
+  padding: 11rem var(--page-gutter);
+  background: #09090b;
+  color: #f7f7f3;
+}
+
+.spotlight header,
+.lab header {
+  max-width: 1480px;
+  margin: 0 auto 5rem;
+  display: grid;
+  grid-template-columns: .45fr 1.15fr .7fr;
+  gap: 4rem;
+  align-items: end;
+}
+
+.spotlight header > p,
+.lab header > p {
+  color: #ffd600;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.spotlight header h2,
+.lab header h2 {
+  max-width: 11ch;
+  font-size: clamp(4.2rem, 6.5vw, 9rem);
+  line-height: .9;
+  letter-spacing: -.07em;
+}
+
+.spotlight header > span,
+.lab header > span {
+  color: #a4a4aa;
+  font-size: 1.55rem;
+  line-height: 1.55;
+}
+
+.bento {
+  max-width: 1480px;
+  min-height: 72rem;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  grid-auto-flow: dense;
+  gap: 2px;
+  background: #2a2a2e;
+  overflow: hidden;
+}
+
+.tile {
+  position: relative;
+  min-height: 30rem;
+  overflow: hidden;
+  color: #fff;
+  background: #161619;
+  text-decoration: none;
+  isolation: isolate;
+}
+
+.tile[data-project='itgreen-os'] { grid-column: span 7; grid-row: span 2; }
+.tile[data-project='itgreen-intranet'] { grid-column: span 5; }
+.tile[data-project='geodevinette'] { grid-column: span 3; }
+.tile[data-project='evolve2d'] { grid-column: span 2; }
+
+.tile img {
+  z-index: -2;
+  object-fit: cover;
+  opacity: .42;
+  filter: saturate(.35) contrast(1.08);
+  transition: transform .75s cubic-bezier(.2,.75,.2,1), opacity .5s ease;
+}
+
+.tile:hover img,
+.tile:focus-visible img { transform: scale(1.045); opacity: .58; }
+.tile:focus-visible { outline: 3px solid #ffd600; outline-offset: -3px; }
+
+.scrim {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 5%, rgba(5,5,7,.3) 42%, rgba(5,5,7,.96) 100%);
+}
+
+.tile::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: auto -10% -50% 20%;
+  height: 75%;
+  background: var(--accent);
+  filter: blur(9rem);
+  opacity: .17;
+}
+
+.tile > div { position: absolute; inset: auto 0 0; padding: clamp(2rem, 3vw, 4.5rem); }
+.tile > div > p { color: var(--accent); font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
+.tile h3 { margin: .8rem 0 1rem; font-size: clamp(3rem, 5vw, 7rem); line-height: .92; letter-spacing: -.065em; }
+.tile > div > span { display: block; max-width: 55ch; color: #b7b7bd; font-size: 1.35rem; line-height: 1.45; }
+.tile strong { display: block; margin-top: 2.2rem; font-size: 1.25rem; }
+.tile strong i { font-style: normal; color: var(--accent); }
+.pending { position: absolute; top: 1.7rem; right: 1.7rem; padding: .65rem .9rem; border: 1px solid rgba(255,255,255,.25); color: #c7c7cc; background: rgba(0,0,0,.35); backdrop-filter: blur(8px); font-size: 1rem; text-transform: uppercase; letter-spacing: .1em; }
+
+.tile[data-project='itgreen-intranet'] h3 { font-size: clamp(3.2rem, 4vw, 5.6rem); }
+.tile[data-project='geodevinette'] h3,
+.tile[data-project='evolve2d'] h3 { font-size: clamp(2.6rem, 3vw, 4rem); }
+.tile[data-project='geodevinette'] > div > span,
+.tile[data-project='evolve2d'] > div > span { display: none; }
+
+.lab { background: #f0efe9; color: #101012; }
+.lab header > p { color: #756400; }
+.lab header > span { color: #626268; }
+.accordion { max-width: 1480px; min-height: 48rem; margin: auto; display: flex; gap: 2px; background: #bdbcb6; }
+.accordion article { flex: 1 1 0; min-width: 0; display: grid; grid-template-columns: 6rem 1fr; background: #fff; overflow: hidden; transition: flex .55s cubic-bezier(.2,.75,.2,1), background .3s ease; }
+.accordion article:hover,
+.accordion article:focus-within,
+.accordion article:focus { flex: 2.2 1 0; background: #0d0d0f; color: #fff; outline: 0; }
+.labIndex { padding: 2rem 0; border-right: 1px solid #deded9; color: #85847e; font: 700 1.1rem var(--font-mono); text-align: center; writing-mode: vertical-rl; letter-spacing: .12em; }
+.labCopy { width: min(42rem, 70vw); padding: 3rem; display: flex; flex-direction: column; }
+.labCopy > p { color: #777770; font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
+.labCopy h3 { margin: auto 0 1.5rem; font-size: clamp(3.5rem, 5vw, 7rem); line-height: .9; letter-spacing: -.07em; }
+.labCopy > span { max-width: 42ch; color: #66666c; font-size: 1.4rem; line-height: 1.5; }
+.accordion article:hover .labCopy > span,
+.accordion article:focus .labCopy > span,
+.accordion article:focus-within .labCopy > span { color: #b4b4ba; }
+.labCopy ul { margin: 2rem 0; display: flex; flex-wrap: wrap; gap: .6rem; }
+.labCopy li { padding: .55rem .8rem; border: 1px solid #d4d4cf; font-size: 1.05rem; list-style: none; }
+.labCopy a { color: inherit; font-size: 1.25rem; font-weight: 800; }
+.labCopy a i { color: var(--accent); font-style: normal; }
+
+@media (max-width: 900px) {
+  .spotlight header,
+  .lab header { grid-template-columns: 1fr; gap: 2rem; }
+  .bento { min-height: 0; display: grid; grid-template: none; background: transparent; gap: 1rem; }
+  .tile,
+  .tile[data-project] { grid-column: auto; grid-row: auto; min-height: 44rem; }
+  .tile[data-project='geodevinette'] > div > span,
+  .tile[data-project='evolve2d'] > div > span { display: block; }
+  .accordion { min-height: 0; flex-direction: column; background: transparent; gap: 1rem; }
+  .accordion article,
+  .accordion article:hover,
+  .accordion article:focus { flex: none; min-height: 36rem; }
+  .labCopy { width: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile img,
+  .accordion article { transition: none; }
+}

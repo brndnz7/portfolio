@@ -1,531 +1,103 @@
 @import '/assets/media-queries.scss';
 
-.section {
-  position: relative;
-  background-color: hsl(var(--color-bg-alt));
-  padding-bottom: 20vh;
+.section { position: relative; overflow: hidden; padding: 8rem 0 20rem; color: hsl(var(--color-white)); background: hsl(var(--color-bg-alt)); }
+.section::before { content: ''; position: absolute; inset: 16% -15% auto; height: 62rem; background: radial-gradient(ellipse, hsla(var(--color-primary), .075), transparent 70%); pointer-events: none; }
+.header { max-width: 1800px; margin: 0 auto; padding: 2rem var(--x-spacing) 7rem; display: grid; grid-template-columns: 1.2fr .8fr; gap: 6rem; align-items: end; }
+.description { max-width: 58rem; padding-bottom: 1rem; color: hsla(var(--color-white), .72); font-size: var(--fs-sm); }
+.browser { position: relative; max-width: 1800px; margin: auto; padding: 0 var(--x-spacing); }
+
+.commandBar { position: relative; z-index: 30; display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem 2.2rem; }
+.tabs { display: flex; gap: 1.8rem; align-items: center; }
+.tabs button { padding: .7rem 0; border: 0; border-bottom: 2px solid transparent; color: hsla(var(--color-white), .42); background: transparent; cursor: pointer; font-size: 1.15rem; font-weight: var(--fw-bold); transition: color .2s ease, border-color .2s ease, transform .2s ease; }
+.tabs button[aria-selected='true'] { color: #fff; border-color: hsl(var(--color-primary)); }
+.tabs button:active { transform: scale(.97); }
+
+.filterMenu { display: flex; align-items: center; gap: .7rem; }
+.filterMenu button { position: relative; width: 3.5rem; height: 3.5rem; padding: .8rem; display: grid; place-items: center; border: 0; border-radius: 50%; color: hsla(var(--color-white), .48); background: hsla(var(--color-white), .055); cursor: pointer; transition: color .2s ease, background .2s ease, transform .2s ease; }
+.filterMenu button svg { width: 100%; height: 100%; }
+.filterMenu button:hover, .filterMenu button.isActive { color: #09090b; background: hsl(var(--color-primary)); transform: translateY(-.2rem); }
+.filterMenu small { position: absolute; z-index: 5; top: 4.7rem; left: 50%; padding: .45rem .7rem; color: #fff; background: #050506; opacity: 0; transform: translate(-50%, -.4rem); pointer-events: none; white-space: nowrap; transition: opacity .2s ease, transform .2s ease; }
+.filterMenu button:hover small, .filterMenu button:focus-visible small { opacity: 1; transform: translate(-50%, 0); }
+
+.projectMenu { flex: 1 0 100%; min-width: 0; display: flex; gap: .5rem; overflow-x: auto; padding-top: .8rem; scrollbar-width: thin; border-top: 1px solid hsla(var(--color-white), .08); }
+.projectMenu button { position: relative; min-width: max-content; padding: .8rem 1rem 1rem; display: flex; align-items: center; gap: .7rem; border: 0; color: hsla(var(--color-white), .38); background: transparent; cursor: pointer; font-size: 1.05rem; font-weight: var(--fw-medium); transition: color .2s ease, background .2s ease; }
+.projectMenu button::after { content: ''; position: absolute; right: 1rem; bottom: 0; left: 1rem; height: 2px; background: hsl(var(--color-primary)); transform: scaleX(0); transition: transform .25s ease; }
+.projectMenu button svg { width: 1.45rem; height: 1.45rem; color: hsla(var(--color-white), .3); }
+.projectMenu button:hover { color: #fff; }
+.projectMenu button[aria-current='true'] { color: #fff; }
+.projectMenu button[aria-current='true']::after { transform: scaleX(1); }
+.projectMenu button[aria-current='true'] svg { color: hsl(var(--color-primary)); }
+
+.stage { position: relative; min-height: 78rem; perspective: 1700px; touch-action: pan-y; outline-offset: 1rem; }
+.stage::after { content: ''; position: absolute; z-index: 0; inset: 5rem 8% 12rem; background: radial-gradient(ellipse, rgba(0,0,0,.1), rgba(0,0,0,.72) 72%); pointer-events: none; }
+.projectCard { position: absolute; top: 5rem; left: 50%; z-index: 2; width: min(106rem, 72vw); height: 62rem; translate: -50% 0; overflow: hidden; border: 1px solid hsla(var(--color-white), .17); border-radius: 2.2rem; background: #101012; box-shadow: 0 4rem 10rem rgba(0,0,0,.62); transform-origin: center center; cursor: pointer; }
+.projectCard[data-active='true'] { cursor: default; }
+.projectCard img { object-fit: cover; transition: filter .3s ease; }
+.projectCard:not([data-active='true']) img { filter: grayscale(1) brightness(.48); }
+.projectCard:not([data-active='true']) .cardCopy, .projectCard:not([data-active='true']) .placeholder { opacity: 0; pointer-events: none; }
+.cardShade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,7,9,.03) 10%, rgba(7,7,9,.24) 48%, rgba(7,7,9,.98) 100%); }
+.cardCopy { position: absolute; z-index: 2; inset: auto 0 0; padding: 4.2rem 4.6rem; transition: opacity .25s ease; }
+.cardCopy > span { color: hsl(var(--color-primary)); font-size: 1.05rem; font-weight: var(--fw-bold); letter-spacing: .11em; text-transform: uppercase; }
+.cardCopy h2 { max-width: 12ch; margin: .6rem 0 1rem; font-size: clamp(4rem, 5.4vw, 8rem); line-height: .88; letter-spacing: -.065em; }
+.cardCopy p { max-width: 55ch; color: hsla(var(--color-white), .72); font-size: 1.4rem; }
+.cardCopy ul { margin-top: 1.8rem; display: flex; flex-wrap: wrap; gap: .7rem; }
+.cardCopy li { padding: .55rem .85rem; border: 1px solid hsla(var(--color-white), .2); font-size: 1.05rem; }
+.cardCopy a { position: absolute; right: 4.6rem; bottom: 4.2rem; padding: 1.35rem 1.7rem; color: #080808; background: hsl(var(--color-primary)); text-decoration: none; font-size: 1.2rem; font-weight: var(--fw-bold); transition: transform .2s ease, background .2s ease; }
+.cardCopy a:hover { transform: translateY(-.3rem); background: #fff2a3; }
+.placeholder { position: absolute; z-index: 3; top: 1.8rem; right: 1.8rem; padding: .65rem .85rem; color: hsla(var(--color-white), .62); background: rgba(0,0,0,.58); font-size: 1rem; letter-spacing: .08em; text-transform: uppercase; transition: opacity .25s ease; }
+.empty { padding: 10rem; color: hsla(var(--color-white), .5); font-size: var(--fs-sm); text-align: center; }
+
+.controls { position: absolute; z-index: 40; inset: 0; pointer-events: none; }
+.controls > button { position: absolute; top: 39%; width: 6.4rem; height: 6.4rem; padding: 1.5rem; display: grid; place-items: center; border: 1px solid hsla(var(--color-white), .18); border-radius: 50%; color: #fff; background: rgba(8,8,10,.72); box-shadow: inset 0 1px 0 hsla(var(--color-white), .08), 0 1.5rem 4rem rgba(0,0,0,.4); backdrop-filter: blur(12px); cursor: pointer; pointer-events: auto; transition: color .25s ease, background .25s ease, transform .25s ease; }
+.controls > button:first-child { left: 2rem; }
+.controls > button:last-child { right: 2rem; }
+.controls > button svg { width: 2.4rem; height: 2.4rem; }
+.controls > button span { display: none; }
+.controls > button:hover { color: #080808; background: hsl(var(--color-primary)); transform: scale(1.06); }
+.controls > button:active { transform: scale(.98); }
+.controls > div { position: absolute; bottom: 4rem; left: 50%; display: flex; align-items: center; gap: 1rem; transform: translateX(-50%); }
+.controls > div strong, .controls > div span { font: 1.2rem var(--font-mono); font-variant-numeric: tabular-nums; }
+.controls > div span { color: hsla(var(--color-white), .34); }
+.controls > div i { width: 7rem; height: 1px; background: hsla(var(--color-white), .2); }
+
+@include respond-below(lg) {
+  .header { grid-template-columns: 1fr; gap: 3rem; }
+  .projectCard { width: min(86rem, 76vw); height: 55rem; }
+  .cardCopy a { position: static; display: inline-block; margin-top: 2rem; }
+  .controls > button { width: 9rem; height: 9rem; }
 }
 
-.container{
-  max-width: 100%; 
-  margin: 0 auto;
-  padding: 0;
+@include respond-below(md) {
+  .section { padding-bottom: 11rem; }
+  .header { padding-bottom: 4rem; }
+  .commandBar { gap: 1rem 1.5rem; }
+  .tabs { width: 100%; }
+  .tabs button { flex: 1; }
+  .filterMenu { overflow-x: auto; padding-bottom: .4rem; }
+  .filterMenu > span { display: none; }
+  .stage { min-height: 62rem; overflow: hidden; }
+  .projectCard { top: 3rem; width: 86vw; height: 49rem; }
+  .projectCard:not([data-active='true']) { pointer-events: none; }
+  .cardCopy { padding: 2.6rem; }
+  .cardCopy h2 { font-size: 4.2rem; }
+  .cardCopy p { display: none; }
+  .controls > button { top: auto; bottom: 1rem; width: 5rem; height: 5rem; }
+  .controls > button:first-child { left: 0; }
+  .controls > button:last-child { right: 0; }
+  .controls > button svg { width: 2rem; height: 2rem; }
+  .controls > div { bottom: 2.4rem; }
+  .controls > div i { width: 3rem; }
 }
 
-.header {
-  padding: 10rem var(--x-spacing) 5rem;
-  max-width: 1800px;
-  margin: 0 auto;
-  
-  @include respond-below(md) {
-      padding: 6rem var(--x-spacing) 3rem;
-  }
-
-  .headerContent{
-      max-width: 80rem;
-      margin-top: 4rem;
-
-      @include respond-below(md) {
-        margin-top: 2rem;
-      }
-  }
+@include respond-below(sm) {
+  .browser { padding: 0 1.5rem; }
+  .projectCard { width: calc(100vw - 5rem); }
+  .cardCopy h2 { font-size: 3.7rem; }
+  .cardCopy ul { margin-top: 1.2rem; }
+  .controls > button span { display: none; }
+  .controls > button { width: 5rem; border-radius: 50%; }
 }
 
-.description {
-  font-size: var(--fs-md);
-  font-weight: var(--fw-light);
-  color: hsl(var(--color-white));
-  opacity: 0.8;
-
-  @include respond-below(sm) {
-    font-size: var(--fs-sm);
-  }
-}
-
-.gallery {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10vh; // Espace entre les stacks
-  margin-top: 5vh;
-
-  @include respond-below(md) {
-    gap: 5vh;
-    margin-top: 0;
-  }
-}
-
-.cardContainer {
-  height: 100vh;
-  height: 100dvh; // Support mobile moderne
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: sticky;
-  top: 0;
-  perspective: 1000px;
-  
-  // Sur mobile, on veut éviter que ça sorte de l'écran si le contenu est long
-  @include respond-below(sm) {
-    align-items: flex-start;
-    padding-top: 10vh; // Un peu d'espace en haut
-  }
-}
-
-.card {
-  position: relative;
-  display: grid;
-  grid-template-columns: 40% 60%; // Fixe pour éviter le Layout Shift
-  grid-template-rows: 100%;
-  grid-template-areas: "body media";
-  align-items: stretch;
-  justify-items: stretch;
-  width: 90vw; 
-  max-width: 1600px;
-  height: 70vh; 
-  border-radius: 2rem;
-  padding: 0; 
-  transform-origin: top center;
-  overflow: hidden;
-  gap: 0; 
-  
-  background: rgba(20, 20, 20, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  
-  @include respond-below(lg) {
-      grid-template-columns: 100%;
-      grid-template-rows: auto 1fr; 
-      grid-template-areas: "body" "media";
-      height: auto;
-      min-height: 80vh;
-      width: 95vw;
-      gap: 0;
-  }
-
-  @include respond-below(md) {
-      grid-template-rows: auto 300px; 
-      border-radius: 1.5rem;
-  }
-}
-
-.cardBody {
-  grid-area: body;
-  align-self: stretch;
-  justify-self: stretch;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 4rem 0 4rem 4rem;
-  height: 100%;
-  position: relative;
-  z-index: 2;
-  min-width: 0;    // Empêche le débordement
-  
-  @include respond-below(lg) {
-    grid-area: body;
-    padding: 3rem;
-  }
-
-  @include respond-below(md) {
-      padding: 2rem;
-  }
-}
-
-.meta{
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    font-size: var(--fs-xs);
-    font-weight: var(--fw-bold);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: hsl(var(--color-white));
-    opacity: 0.7;
-    
-    .separator {
-      width: 40px;
-      height: 1px;
-      background: currentColor;
-    }
-
-    @include respond-below(md) {
-      margin-bottom: 1.5rem;
-      gap: 1rem;
-      font-size: var(--fs-xxs);
-      
-      .separator { width: 20px; }
-    }
-}
-
-.title {
-  margin: 0;
-  font-size: clamp(3rem, 5vw, 6rem); 
-  line-height: 1;
-  margin-bottom: 3rem;
-  font-weight: var(--fw-bold);
-  color: hsl(var(--color-white));
-  letter-spacing: -0.02em;
-
-  @include respond-below(md) {
-     font-size: clamp(2.4rem, 8vw, 4rem);
-     margin-bottom: 1.5rem;
-  }
-}
-
-.technologies{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 4rem;
-    
-    @include respond-below(md) {
-      gap: 0.6rem;
-      margin-bottom: 2rem;
-    }
-
-    .tech{
-        padding: 0.8rem 1.5rem;
-        border: 1px solid rgba(255,255,255,0.2);
-        border-radius: 100px;
-        font-size: var(--fs-xs);
-        font-weight: var(--fw-medium);
-        color: hsl(var(--color-white));
-        background: rgba(255,255,255,0.05);
-        transition: all 0.3s ease;
-        
-        @include respond-below(md) {
-          padding: 0.6rem 1rem;
-          font-size: 1.2rem;
-        }
-
-        &:hover {
-          background: rgba(255,255,255,0.1);
-          transform: translateY(-2px);
-        }
-    }
-}
-
-.projectDesc {
-  font-size: var(--fs-sm);
-  line-height: 1.6;
-  max-width: 50ch;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: auto;
-  
-  @include respond-below(lg) {
-      margin-bottom: 2rem;
-  }
-  
-  @include respond-below(md) {
-     font-size: 1.4rem;
-     line-height: 1.5;
-  }
-}
-
-.cardImage {
-  grid-area: media;
-  align-self: stretch;
-  justify-self: stretch;
-  position: relative;
-  min-width: 0;
-  min-height: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  border-radius: 0 2rem 2rem 0;
-  margin: 1rem 1rem 1rem 0;
-  
-  @include respond-below(lg) {
-      grid-area: media;
-      width: 100%;
-      height: 100%; 
-      border-radius: 0 0 2rem 2rem;
-      margin: 0;
-  }
-}
-
-.imageInner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.img {
-    object-position: center center;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    
-    @include respond-below(lg) {
-      object-position: center center; 
-    }
-}
-
-.actions{
-  margin-top: auto;
-  
-  @include respond-below(md) {
-    margin-top: 1rem;
-    button {
-      padding: 1rem 2rem;
-      font-size: 1.4rem;
-    }
-  }
-}
-
-.cardBlob {
-  position: absolute;
-  top: 50%;
-  left: 20%;
-  width: 40vw;
-  height: 40vw;
-  max-width: 600px;
-  max-height: 600px;
-  background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
-  opacity: 0.15;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 1;
-
-  @include respond-below(lg) {
-    grid-column: 1;
-    top: 15%;
-    left: 50%;
-    width: 60vw;
-    height: 60vw;
-  }
-}
-
-// Grille d'images (4 images)
-.imageGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 0.5rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 1rem;
-  
-  @include respond-below(lg) {
-    padding: 0.5rem;
-    gap: 0.3rem;
-  }
-}
-
-.gridItem {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 1rem;
-  overflow: hidden;
-  cursor: zoom-in;
-  
-  &:hover {
-    .zoomIcon {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-  }
-}
-
-.zoomIcon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.8);
-  width: 4rem;
-  height: 4rem;
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 2rem;
-  opacity: 0;
-  transition: all 0.3s ease;
-  pointer-events: none;
-  z-index: 10;
-}
-
-// Image simple avec overlay zoom
-.zoomOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  cursor: zoom-in;
-  
-  span {
-    color: white;
-    font-size: var(--fs-sm);
-    padding: 1rem 2rem;
-    border: 2px solid white;
-    border-radius: 100px;
-    background: rgba(0, 0, 0, 0.5);
-  }
-  
-  &:hover {
-    opacity: 1;
-  }
-}
-
-.imageInner:hover .zoomOverlay {
-  opacity: 1;
-}
-
-// Lightbox
-.lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.95);
-  backdrop-filter: blur(10px);
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-}
-
-.lightboxContent {
-  position: relative;
-  width: 100%;
-  max-width: 1400px;
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.lightboxImageWrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 1rem;
-  overflow: hidden;
-}
-
-.lightboxImage {
-  object-fit: contain;
-}
-
-.closeBtn {
-  position: absolute;
-  top: -4rem;
-  right: 0;
-  width: 5rem;
-  height: 5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  color: white;
-  font-size: 3rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  z-index: 10;
-  
-  &:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(90deg);
-  }
-}
-
-.navBtn {
-  width: 6rem;
-  height: 6rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  color: white;
-  font-size: 3rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-  
-  &:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.1);
-  }
-  
-  @include respond-below(md) {
-    width: 4rem;
-    height: 4rem;
-    font-size: 2rem;
-  }
-}
-
-.thumbnails {
-  position: absolute;
-  bottom: -8rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 1rem;
-  padding: 1rem;
-  
-  @include respond-below(md) {
-    bottom: -6rem;
-    gap: 0.5rem;
-  }
-}
-
-.thumb {
-  position: relative;
-  width: 8rem;
-  height: 6rem;
-  border-radius: 0.5rem;
-  overflow: hidden;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
-  opacity: 0.6;
-  
-  &:hover, &.active {
-    opacity: 1;
-    border-color: white;
-    transform: translateY(-5px);
-  }
-  
-  @include respond-below(md) {
-    width: 6rem;
-    height: 4.5rem;
-  }
-}
-
-.counter {
-  position: absolute;
-  top: -4rem;
-  left: 0;
-  color: white;
-  font-size: var(--fs-sm);
-  opacity: 0.7;
+@media (prefers-reduced-motion: reduce) {
+  .projectCard, .projectCard img { transition: none; }
 }

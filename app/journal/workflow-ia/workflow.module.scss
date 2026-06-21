@@ -1,0 +1,30 @@
+.page { background: #09090b; color: #fff; min-height: 100vh; }
+.page nav { padding: 2.5rem var(--page-gutter); display: flex; justify-content: space-between; color: #777780; font-size: 1.2rem; }
+.page nav a { color: #fff; text-decoration: none; font-weight: 700; }
+.page header { min-height: 85vh; padding: 8rem var(--page-gutter); display: grid; align-content: center; position: relative; overflow: hidden; }
+.page header::after { content: 'AI'; position: absolute; right: -3vw; bottom: -14vw; color: rgba(255,255,255,.025); font-size: 60vw; font-weight: 800; line-height: 1; letter-spacing: -.2em; }
+.page header > * { position: relative; z-index: 1; }
+.page header > span, .case > span { color: #ffd600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: .14em; font-weight: 800; }
+.page h1 { font-size: clamp(6rem, 12vw, 16rem); line-height: .82; letter-spacing: -.085em; margin: 3rem 0; }
+.page h1 em { color: #b8cbff; font-style: normal; font-weight: 400; }
+.page header p { max-width: 60ch; color: #aaaab2; font-size: 1.8rem; }
+.steps { padding: 2rem var(--page-gutter) 10rem; }
+.steps article { display: grid; grid-template-columns: 8rem .65fr 1fr; gap: 3rem; padding: 3.5rem 0; border-top: 1px solid #303035; align-items: start; }
+.steps article > span { color: #ffd600; font: 1.2rem var(--font-mono); }
+.steps h2 { font-size: clamp(3rem, 5vw, 7rem); line-height: 1; letter-spacing: -.06em; }
+.steps p { color: #aaaab2; max-width: 50ch; font-size: 1.6rem; }
+.case { background: #eeeDE8; color: #101012; padding: 11rem var(--page-gutter); }
+.case h2 { font-size: clamp(4rem, 7vw, 10rem); line-height: .92; letter-spacing: -.07em; max-width: 12ch; margin: 3rem 0 6rem; }
+.case > div { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-left: 30%; }
+.case p { color: #606068; font-size: 1.7rem; }
+.rules { background: #ffd600; color: #090909; padding: 10rem var(--page-gutter); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; }
+.rules h2 { font-size: clamp(4rem, 7vw, 9rem); line-height: .9; letter-spacing: -.07em; }
+.rules li { padding: 1.8rem 0; border-top: 1px solid rgba(0,0,0,.25); font-size: 1.7rem; }
+.page footer { padding: 8rem var(--page-gutter); }
+.page footer a { color: #fff; font-size: clamp(4rem, 7vw, 10rem); font-weight: 800; letter-spacing: -.07em; text-decoration: none; }
+@media (max-width: 700px) {
+  .steps article { grid-template-columns: 4rem 1fr; }
+  .steps p { grid-column: 2; }
+  .case > div { grid-template-columns: 1fr; margin-left: 0; }
+  .rules { grid-template-columns: 1fr; }
+}

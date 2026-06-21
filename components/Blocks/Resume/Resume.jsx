@@ -62,6 +62,7 @@ export default function Resume() {
                                 <hr/>
                                 <div className={styles.cardSectionTitle}>EXPERIENCES</div>
                                 <p>
+                                    Stage | ITGREEN <br/>
                                     Stage | Euro Consultancy <br/>
                                     BUT MMI | IUT de Haguenau <br/>
                                     BUT GEII | IUT de Haguenau

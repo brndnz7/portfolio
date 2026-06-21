@@ -1,53 +1,52 @@
-Hello 👋 
+# Portfolio S6 — Baran Deniz
 
-[![LinkedIn](https://github.com/yasingencnet/webkit/assets/5924267/63307c26-ed84-4027-b970-c6b972d4419e)](https://www.linkedin.com/in/baran-deniz-973ba923a/)
-[![GitHub](https://github.com/yasingencnet/webkit/assets/5924267/d99ace42-aaee-4aae-95f0-9149e975c261)](https://github.com/brndnz7)
+Application web présentant mon profil professionnel, mes compétences **Développer** et **Entreprendre** au niveau 3 du BUT MMI, ainsi qu’une sélection d’études de cas documentées.
 
-Ceci est le portfolio de **DENIZ Baran**, étudiant en BUT MMI spécialisé en développement web. 
+Le portfolio conserve une identité sombre et immersive tout en privilégiant la lisibilité, l’accessibilité et les preuves de compétences.
 
-Découvrez mes projets et réalisations sur [https://portfolio-theta-wine-40.vercel.app/](https://portfolio-theta-wine-40.vercel.app/)
+## Fonctionnalités
 
-N'hésitez pas à me contacter pour toute opportunité ou collaboration !
+- accueil et profil professionnel ;
+- correspondance entre apprentissages critiques et projets ;
+- slideshow spatial accessible des quatre projets principaux ;
+- pages d’études de cas générées depuis des données structurées ;
+- galerie de projets secondaires ;
+- article sur le workflow avec l’IA générative ;
+- formulaire validé préparant un e-mail sans stockage de données ;
+- adaptation mobile et prise en charge de `prefers-reduced-motion`.
 
----
+## Stack
 
-### Lancer le Projet
+Next.js 14, React 18, Sass, Framer Motion et Vercel Analytics. Les données éditoriales sont centralisées dans `database/projects.js` et `database/competencies.js`.
+
+## Installation
 
 ```bash
-# Mode Développement
+npm install
 npm run dev
-
-# Mode Production
-npm run build
 ```
 
-Ouvrir [http://localhost:3000](http://localhost:3000) dans votre navigateur.
+Le site est disponible sur [http://localhost:3000](http://localhost:3000).
 
----
+## Vérifications
 
-### Technologies Utilisées
+```bash
+npm run lint
+npm run build
+npm run start
+```
 
-Propulsé par Vercel, Next.js, GSAP, et GitHub.
+Les vérifications manuelles couvrent les formats desktop et mobile, la navigation clavier, la réduction des animations, les liens externes et les pages dynamiques.
 
-| Core               | Autres                |
-|--------------------|-----------------------|
-| react              | sass                  |
-| react-dom          | @gsap/react           |
-| next               | gsap                  |
-| @uidotdev/usehooks | @studio-freight/lenis |
-| axios              | framer-motion         |
-| @vercel/analytics  | react-fast-marquee    |
-|                    | swiper                |
-|                    | three.js              |
+## Structure éditoriale
 
----
+- `database/projects.js` : contenu des études de cas et de l’archive ;
+- `database/competencies.js` : référentiel Développer/Entreprendre et preuves associées ;
+- `components/PF6/` : accueil, carrousel et formulaire ;
+- `app/projets/[slug]/` : pages projets ;
+- `app/journal/workflow-ia/` : article sur la démarche IA.
 
-### À Propos
+## Contact
 
-Étudiant passionné en développement web, je me spécialise dans la création de sites web modernes, accessibles et performants. Mon portfolio présente une sélection de mes meilleurs projets utilisant diverses technologies comme JavaScript, PHP, CSS, HTML, SQL, WordPress, Symfony et bien d'autres.
-
-**Contact :** barancelal@hotmail.com  
-**Localisation :** Strasbourg, France
-
-## Licence
-N'hésitez pas à utiliser ce projet.
+Baran Deniz — Strasbourg
+[LinkedIn](https://www.linkedin.com/in/baran-deniz-973ba923a/) · [GitHub](https://github.com/brndnz7)
