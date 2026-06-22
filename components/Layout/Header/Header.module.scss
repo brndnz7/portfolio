@@ -5,7 +5,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 2;
+  z-index: 1000;
 
   /*&.menuOpen{
 
@@ -34,9 +34,7 @@
   height: var(--size);
   cursor: pointer;
 
-  @include respond-above(xs) {
-    display: none;
-  }
+  display: none;
 
   span{
     display: block;
@@ -152,6 +150,13 @@
   color: hsla(var(--color-white), .9);
   text-transform: uppercase;
   @include respond-below(xs) {
+    display: none;
+  }
+}
+
+@media (max-width: 1180px) {
+  .location,
+  .openToWork {
     display: none;
   }
 }

@@ -1,77 +1,114 @@
 'use client';
 
-import React, {useRef} from 'react';
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-
-import styles from './Navigation.module.scss'
-import Link from "next/link";
+import { useEffect, useMemo, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import { TbBriefcase, TbFileCv, TbMail, TbRoute, TbTools } from 'react-icons/tb';
 import PageList from '@/database/PageList.json';
+import styles from './Navigation.module.scss';
 
-export default function Navigation({ isMenuOpen, setMenuOpen }) {
+const LiquidGlass = dynamic(() => import('liquid-glass-react'), {
+  ssr: false,
+  loading: () => <div className={styles.glassFallback} aria-hidden="true" />
+});
+
+const icons = {
+  skills: TbTools,
+  works: TbBriefcase,
+  experience: TbRoute,
+  resume: TbFileCv,
+  contact: TbMail
+};
+
+export default function Navigation({ setMenuOpen }) {
+  const navigationRef = useRef(null);
+  const items = useMemo(() => Object.entries(PageList)
+    .filter(([, item]) => item.showOnNavigation && item.isActive), []);
+  const [activeLink, setActiveLink] = useState(items[0]?.[1].link || '');
+  const { contextSafe } = useGSAP({ scope: navigationRef });
+
+  useEffect(() => {
+    const sections = items
+      .filter(([, item]) => item.link.startsWith('#'))
+      .map(([, item]) => document.querySelector(item.link))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible) setActiveLink(`#${visible.target.id}`);
+    }, { rootMargin: '-28% 0px -58% 0px', threshold: [0, .1, .25] });
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [items]);
+
+  const scrollToSection = contextSafe((link) => {
+    setMenuOpen(false);
+    setActiveLink(link);
     gsap.registerPlugin(ScrollToPlugin);
+    gsap.to(window, { duration: .9, scrollTo: link, ease: 'power3.inOut' });
+  });
 
-    const navigationRef = useRef();
+  return (
+    <div className={styles.container}>
+      <div className={styles.glassHost}>
+        <LiquidGlass
+          className={styles.liquidGlass}
+          displacementScale={46}
+          blurAmount={0.08}
+          saturation={145}
+          aberrationIntensity={1.5}
+          elasticity={0.12}
+          cornerRadius={999}
+          padding="0"
+          mode="standard"
+          style={{ position: 'absolute', top: '50%', left: '50%' }}
+        >
+          <nav className={styles.navigation} ref={navigationRef} aria-label="Navigation principale">
+            <ul>
+              {items.map(([key, item]) => {
+                const Icon = icons[key] || TbBriefcase;
+                const isActive = activeLink === item.link;
 
-    const { contextSafe } = useGSAP({scope: navigationRef});
-
-    const doAnim = contextSafe((e) => {
-        let height = e.target.offsetHeight;
-        let width = e.target.offsetWidth;
-        let x = e.target.offsetLeft;
-        let y = e.target.offsetTop;
-        let bg = e.target.parentNode.parentNode.parentNode.querySelector(`.${styles.bg}`);
-        gsap.to(bg, {
-            duration: 0.3,
-            scale: 1,
-            x: x,
-            y: y,
-            width: width,
-            height: height,
-            autoAlpha: 1,
-        });
-    });
-    const resetAnim = contextSafe((e) => {
-        let bg = e.target.parentNode.parentNode.parentNode.querySelector(`.${styles.bg}`);
-        gsap.to(bg, {
-            duration: 0.3,
-            scale: 0,
-            autoAlpha: 0
-        });
-    });
-
-    const scrollToSection = contextSafe((e) => {
-        setMenuOpen(false);
-        gsap.to(window, {
-            duration: 1,
-            scrollTo: e
-        });
-    });
-
-    return (
-        <div className={`${styles.container} ${isMenuOpen ? styles.menuOpen : ''}`}>
-            <nav className={styles.navigation} ref={navigationRef}>
-                <ul>
-                    {Object.values(PageList)
-                        .filter(item => item.showOnNavigation)
-                        .filter(item => item.isActive)
-                        .map((item, index) => (
-                            <li key={index}>
-                                {item.link.startsWith('#') ? (
-                                    <button onMouseEnter={doAnim} onMouseLeave={resetAnim}
-                                            onClick={() => scrollToSection(item.link)}>
-                                        {item.title}
-                                    </button>
-                                ) : (
-                                    <Link href={item.link} onMouseEnter={doAnim} onMouseLeave={resetAnim}>{item.title}</Link>
-                                )}
-                            </li>
-                        ))}
-                </ul>
-
-                <span className={styles.bg}></span>
-            </nav>
-        </div>
-    )
+                return (
+                  <li key={key}>
+                    {item.link.startsWith('#') ? (
+                      <button
+                        type="button"
+                        className={isActive ? styles.active : ''}
+                        aria-current={isActive ? 'page' : undefined}
+                        aria-label={item.title}
+                        onClick={() => scrollToSection(item.link)}
+                      >
+                        <Icon aria-hidden="true" />
+                        <span>{item.title}</span>
+                        {isActive && (
+                          <motion.i
+                            className={styles.lamp}
+                            layoutId="navigation-lamp"
+                            transition={{ type: 'spring', stiffness: 320, damping: 28 }}
+                          />
+                        )}
+                      </button>
+                    ) : (
+                      <Link href={item.link} aria-label={item.title}>
+                        <Icon aria-hidden="true" />
+                        <span>{item.title}</span>
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+        </LiquidGlass>
+      </div>
+    </div>
+  );
 }
