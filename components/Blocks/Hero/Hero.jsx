@@ -1,29 +1,32 @@
-'use client';
-
 import commonConfig from '@/database/config/metadata.json';
 import ShaderAnimation from '@/components/UI/ShaderAnimation/ShaderAnimation';
+import HeroObject3D from './HeroObject3D';
 import styles from './Hero.module.scss';
 
 export default function Hero() {
   return (
     <section className={styles.hero}>
-        <div className={styles.heroFrame}>
-          <div className={styles.background}>
-            <ShaderAnimation />
-            <div className={styles.shaderVeil} />
-            <div className={styles.noise} />
+      <div className={styles.heroFrame}>
+        <div className={styles.background}>
+          <ShaderAnimation />
+          <div className={styles.shaderVeil} />
+          <div className={styles.noise} />
+        </div>
+
+        <div className={styles.inner}>
+          <div className={styles.title}>
+            <h1>
+              Je suis Baran.
+              <span>Développeur web et créateur d’expériences interactives.</span>
+            </h1>
+            <p>{commonConfig.metadata.description}</p>
           </div>
 
-          <div className={styles.inner}>
-            <div className={styles.title}>
-              <h1>
-                Je suis Baran.
-                <span>Développeur web et créateur d’expériences interactives.</span>
-              </h1>
-              <p>{commonConfig.metadata.description}</p>
-            </div>
-          </div>
+          <aside className={styles.visual} aria-label="Objet 3D abstrait représentant mon univers web et interactif">
+            <HeroObject3D />
+          </aside>
         </div>
+      </div>
     </section>
   );
 }

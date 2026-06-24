@@ -19,7 +19,6 @@ export default function Resume() {
     useGSAP(() => {
         gsap.registerPlugin(ScrollTrigger);
 
-        // CV Card
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: cardGroup.current,
@@ -52,7 +51,7 @@ export default function Resume() {
                                 <div className={styles.cardTitle}>DENIZ BARAN</div>
                                 <div className={styles.cardDesc}>Étudiant en BUT MMI</div>
                                 <hr/>
-                                <p>Je suis Baran, étudiant en BUT MMI (Métiers du Multimédia et de l&apos;Internet) spécialisé en développement web. Passionné par la création de sites web modernes et accessibles, je me concentre sur l&apos;apprentissage des technologies web actuelles. Je suis particulièrement attentif aux détails, j&apos;aime résoudre des problèmes techniques et je m&apos;épanouis dans le travail d&apos;équipe. Mon objectif est de développer constamment mes compétences pour devenir un développeur web polyvalent et innovant.</p>
+                                <p>Je suis Baran, étudiant en BUT MMI (Métiers du Multimédia et de l&apos;Internet) spécialisé en développement web. Passionné par la création de sites web modernes et accessibles, je me concentre sur l&apos;apprentissage des technologies web actuelles. Je suis particulièrement attentif aux détails, j&apos;aime résoudre des problèmes techniques et je m&apos;épanouis dans le travail d&apos;équipe.</p>
                                 <div>
                                     <Link href={`mailto:${commonConfig.personal.email}`} target={'_blank'}>
                                         {commonConfig.personal.email}
@@ -63,9 +62,9 @@ export default function Resume() {
                                 <div className={styles.cardSectionTitle}>EXPERIENCES</div>
                                 <p>
                                     Stage | ITGREEN <br/>
-                                    Stage | Euro Consultancy <br/>
+                                    Stage | EuroConsultancy <br/>
                                     BUT MMI | IUT de Haguenau <br/>
-                                    BUT GEII | IUT de Haguenau
+                                    Opquast | Qualité web
                                 </p>
                             </div>
                             <figure className={styles.figure}>

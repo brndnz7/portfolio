@@ -4,7 +4,7 @@
   position: relative;
   overflow: hidden;
   min-height: 100svh;
-  padding: clamp(12rem, 11vw, 17rem) 0 12rem;
+  padding: clamp(8rem, 8vw, 12rem) 0 8rem;
   color: hsl(var(--color-white));
   background:
     radial-gradient(circle at 48% 68%, rgba(255, 255, 255, .045), transparent 31rem),
@@ -42,15 +42,15 @@
   z-index: 1;
   width: min(100%, 1840px);
   margin: 0 auto;
-  padding-inline: clamp(3rem, 4vw, 8rem);
+  padding-inline: clamp(3rem, 4vw, 7rem);
 }
 
 .header {
   display: grid;
-  grid-template-columns: auto minmax(32rem, 56rem) 1fr;
-  gap: 3.2rem;
+  grid-template-columns: minmax(22rem, auto) minmax(32rem, 56rem) 1fr;
+  gap: 2.8rem;
   align-items: start;
-  margin-bottom: 7rem;
+  margin-bottom: 4.2rem;
 }
 
 .header h2 {
@@ -87,118 +87,139 @@
 .commandBar {
   position: absolute;
   z-index: 12;
-  top: -17rem;
-  right: clamp(0rem, 3vw, 6rem);
+  top: -16.2rem;
+  right: 0;
   display: grid;
-  gap: 3.4rem;
-  justify-items: start;
+  width: min(64rem, 43vw);
+  gap: 1.4rem;
+  justify-items: end;
+  padding: 1.6rem;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 2.4rem;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .018)),
+    rgba(5, 5, 7, .54);
+  box-shadow: 0 2.2rem 5rem rgba(0, 0, 0, .34);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.commandBlock {
+  display: grid;
+  width: 100%;
+  gap: .8rem;
+  justify-items: end;
+}
+
+.commandBlock > span {
+  color: rgba(255, 255, 255, .42);
+  font-size: 1rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: .13em;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 .tabs {
+  width: fit-content;
   display: flex;
-  gap: 4.8rem;
+  gap: .4rem;
   align-items: center;
+  padding: .35rem;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .045);
 }
 
 .tabs button {
   position: relative;
-  padding: .6rem 0 1.3rem;
+  padding: .85rem 1.35rem;
   border: 0;
   color: rgba(255, 255, 255, .46);
   background: transparent;
   cursor: pointer;
-  font-size: 1.62rem;
+  border-radius: 999px;
+  font-size: 1.2rem;
   font-weight: var(--fw-bold);
   line-height: 1;
   white-space: nowrap;
-  transition: color .2s var(--ease-out), transform .2s var(--ease-out);
+  transition: color .2s var(--ease-out), background .2s var(--ease-out), transform .2s var(--ease-out);
 }
 
 .tabs button::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  background: hsl(var(--color-primary));
-  opacity: 0;
-  transform: scaleX(.35);
-  transition: opacity .2s var(--ease-out), transform .2s var(--ease-out);
+  display: none;
 }
 
 .tabs button:hover,
 .tabs button[aria-selected='true'] {
   color: #fff;
+  background: rgba(255, 255, 255, .075);
 }
 
-.tabs button[aria-selected='true']::after {
-  opacity: 1;
-  transform: scaleX(1);
+.tabs button[aria-selected='true'] {
+  color: #090909;
+  background: hsl(var(--color-primary));
 }
 
 .filterMenu {
   display: flex;
-  gap: 1.25rem;
+  gap: .75rem;
   align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
 .filterMenu button {
   position: relative;
-  display: grid;
-  width: 5.1rem;
-  height: 5.1rem;
-  place-items: center;
-  border: 0;
-  border-radius: 50%;
+  display: inline-flex;
+  min-height: 4.2rem;
+  align-items: center;
+  gap: .75rem;
+  padding: 0 1.15rem;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 999px;
   color: rgba(255, 255, 255, .42);
-  background: rgba(255, 255, 255, .07);
+  background: rgba(255, 255, 255, .055);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 1rem 2.6rem rgba(0, 0, 0, .2);
   cursor: pointer;
-  transition: color .2s var(--ease-out), background .2s var(--ease-out), transform .2s var(--ease-out), box-shadow .2s var(--ease-out);
+  transition: color .2s var(--ease-out), background .2s var(--ease-out), border-color .2s var(--ease-out), transform .2s var(--ease-out), box-shadow .2s var(--ease-out);
 }
 
 .filterMenu button svg {
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 1.65rem;
+  height: 1.65rem;
+  flex: 0 0 auto;
 }
 
 .filterMenu button:hover,
 .filterMenu button.isActive {
   color: #080808;
+  border-color: hsl(var(--color-primary));
   background: hsl(var(--color-primary));
-  box-shadow: 0 0 0 .8rem hsla(var(--color-primary), .08), 0 1.3rem 3.2rem rgba(0, 0, 0, .26);
-  transform: translateY(-.25rem);
+  box-shadow: 0 0 0 .5rem hsla(var(--color-primary), .06), 0 1.1rem 2.8rem rgba(0, 0, 0, .24);
+  transform: translateY(-.15rem);
 }
 
 .filterMenu small {
-  position: absolute;
-  z-index: 20;
-  top: calc(100% + .9rem);
-  left: 50%;
-  min-width: max-content;
-  padding: .55rem .8rem;
-  border: 1px solid rgba(255, 255, 255, .1);
-  border-radius: 999px;
-  color: #fff;
-  background: rgba(8, 8, 10, .88);
-  opacity: 0;
-  font-size: 1rem;
+  position: static;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  color: currentColor;
+  background: transparent;
+  opacity: 1;
+  font-size: 1.05rem;
+  font-weight: var(--fw-bold);
   line-height: 1;
   pointer-events: none;
-  transform: translate(-50%, -.4rem);
-  transition: opacity .2s ease, transform .2s ease;
-}
-
-.filterMenu button:hover small,
-.filterMenu button:focus-visible small {
-  opacity: 1;
-  transform: translate(-50%, 0);
+  transform: none;
+  transition: none;
 }
 
 .stage {
   position: relative;
-  min-height: 72rem;
+  min-height: 62rem;
   outline-offset: 1rem;
   perspective: 1800px;
   touch-action: pan-y;
@@ -293,7 +314,7 @@
 .carousel {
   position: relative;
   display: grid;
-  min-height: 66rem;
+  min-height: 59rem;
   place-items: center;
   transform-style: preserve-3d;
 }
@@ -314,8 +335,8 @@
   z-index: 4;
   display: grid;
   grid-template-columns: minmax(28rem, .44fr) minmax(42rem, .76fr);
-  width: min(102rem, 73vw);
-  min-height: 58rem;
+  width: min(101rem, 72vw);
+  min-height: 52rem;
   overflow: hidden;
   border-radius: 1.6rem;
 }
@@ -337,7 +358,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 5.2rem 3.4rem 5.2rem 3.6rem;
+  padding: 4.4rem 3.4rem 4.4rem 3.6rem;
 }
 
 .eyebrow {
@@ -485,7 +506,7 @@
   z-index: 2;
   display: grid;
   width: min(28rem, 20vw);
-  min-height: 48rem;
+  min-height: 43rem;
   align-content: center;
   overflow: hidden;
   padding: 4rem 2.2rem;
@@ -563,7 +584,7 @@
 }
 
 .sideCardLeft {
-  left: 10rem;
+  left: 7rem;
   transform: translate(-50%, -50%) rotateY(22deg) translateZ(-18rem);
 }
 
@@ -572,7 +593,7 @@
 }
 
 .sideCardRight {
-  right: 2rem;
+  right: 1rem;
   transform: translate(50%, -50%) rotateY(-22deg) translateZ(-18rem);
 }
 
@@ -586,7 +607,7 @@
   top: 50%;
   left: 50%;
   display: flex;
-  width: min(128rem, calc(100% - 15rem));
+  width: min(119rem, calc(100% - 11rem));
   align-items: center;
   justify-content: space-between;
   pointer-events: none;
@@ -650,7 +671,14 @@
   .header { grid-template-columns: 1fr; gap: 2.4rem; margin-bottom: 4rem; }
   .header p { padding-left: 0; }
   .header p::before { display: none; }
-  .commandBar { position: static; margin-bottom: 4rem; }
+  .commandBar {
+    position: static;
+    width: 100%;
+    margin-bottom: 3rem;
+    justify-items: start;
+  }
+  .commandBlock { justify-items: start; }
+  .filterMenu { justify-content: flex-start; }
   .stage { min-height: 66rem; }
   .rail { display: none; }
   .featuredCard {
@@ -677,9 +705,14 @@
   .header h2 { font-size: 4.6rem; }
   .header p { font-size: 1.5rem; }
   .tabs { gap: 2.4rem; overflow-x: auto; padding-bottom: .3rem; }
-  .tabs button { font-size: 1.4rem; }
-  .filterMenu { overflow-x: auto; padding-bottom: .6rem; }
-  .filterMenu button { width: 4.4rem; height: 4.4rem; flex: 0 0 auto; }
+  .tabs button { font-size: 1.25rem; }
+  .filterMenu { overflow-x: auto; flex-wrap: nowrap; padding-bottom: .6rem; }
+  .filterMenu button {
+    flex: 0 0 auto;
+    min-height: 4.2rem;
+    padding-inline: 1.1rem;
+  }
+  .filterMenu small { font-size: 1rem; }
   .stage { min-height: 0; }
   .carousel { min-height: 0; }
   .featuredCard { border-radius: 1.4rem; }

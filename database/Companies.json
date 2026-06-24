@@ -2,51 +2,73 @@
   {
     "position": "Stage de fin de BUT · Développement système et outils internes",
     "company": "ITGREEN",
-    "duration": "2026",
-    "location": "Alsace",
+    "duration": "Fév. 2026 · 14 semaines",
+    "location": "Strasbourg",
     "image": "",
     "url": "",
-    "responsibilities": ["Création d’un système Debian 12 de diagnostic et d’effacement sécurisé", "Développement d’un intranet connecté à eBay et Odoo", "Automatisation de l’inventaire et des tâches métier"],
+    "responsibilities": [
+      "Refonte et développement d’un intranet pour une entreprise de reconditionnement informatique.",
+      "Intégration d’outils métier comme Odoo pour faciliter le quotidien des équipes.",
+      "Automatisation de tâches complexes afin d’optimiser les processus internes.",
+      "Création d’un système Debian 12 de diagnostic, d’effacement sécurisé et d’inventaire matériel."
+    ],
     "color": { "h": "50", "s": "100%", "l": "50%" }
   },
   {
-    "position": "BUT MMI · Métiers du Multimédia et de l’Internet, parcours développement web",
-    "company": "IUT de Haguenau",
+    "position": "BUT MMI · Métiers du Multimédia et de l’Internet",
+    "company": "IUT de Haguenau · Université de Strasbourg",
     "duration": "2023 - 2026",
     "location": "Haguenau",
     "image": "",
     "url": "",
-    "responsibilities": [],
+    "responsibilities": [
+      "Parcours développement web avec projets en React, PHP/Symfony, Node.js, Next.js et bases de données.",
+      "Travail sur l’UX/UI, les wireframes, les prototypes Figma et les parcours utilisateurs.",
+      "Gestion de projet, communication numérique, intégration d’API, déploiement et qualité web.",
+      "Certification Opquast qualité web, valable de 2025 à 2028."
+    ],
     "color": { "h": "240", "s": "100%", "l": "45%" }
   },
   {
     "position": "Stage · Développement web",
-    "company": "Euro Consultancy",
-    "duration": "Mai - Juin 2025",
+    "company": "EuroConsultancy",
+    "duration": "2025 · 8 semaines",
     "location": "Strasbourg",
     "image": "",
     "url": "",
-    "responsibilities": [],
+    "responsibilities": [
+      "Refonte du site vitrine WordPress avec attention au SEO et à la conformité RGPD.",
+      "Création d’un site responsive multilingue avec Next.js 14, Tailwind, Prisma et Supabase.",
+      "Mise en place d’un workflow de déploiement avec GitHub, CI/CD et Vercel.",
+      "Gestion du projet en autonomie, de la conception au déploiement."
+    ],
     "color": { "h": "210", "s": "10%", "l": "76%" }
   },
   {
     "position": "BUT GEII · Génie électrique et informatique industrielle",
-    "company": "IUT de Haguenau",
+    "company": "IUT de Haguenau · Université de Strasbourg",
     "duration": "2022 - 2023",
     "location": "Haguenau",
     "image": "",
     "url": "",
-    "responsibilities": [],
+    "responsibilities": [
+      "Bases en électronique, informatique industrielle et programmation.",
+      "Découverte des systèmes techniques, de la logique embarquée et de la rigueur matérielle.",
+      "Parcours réorienté ensuite vers le web et les interfaces numériques avec le BUT MMI."
+    ],
     "color": { "h": "206", "s": "59%", "l": "44%" }
   },
   {
-    "position": "Baccalauréat technologique STI2D",
-    "company": "Lycée Couffignal",
-    "duration": "2022",
+    "position": "Baccalauréat STI2D · Spécialité SIN",
+    "company": "Lycée Louis Couffignal",
+    "duration": "2021 - 2022",
     "location": "Strasbourg",
     "image": "",
     "url": "",
-    "responsibilities": [],
+    "responsibilities": [
+      "Spécialité Systèmes d’Information et Numérique.",
+      "Première approche de la conception technique, du numérique et des systèmes interactifs."
+    ],
     "color": { "h": "221", "s": "79%", "l": "51%" }
   }
 ]

@@ -8,7 +8,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SiGooglemaps, SiLaravel, SiLinux, SiNextdotjs, SiReact, SiRiotgames, SiTauri, SiUnity } from 'react-icons/si';
-import { TbApi, TbArrowDown, TbArrowLeft, TbArrowRight, TbArrowUp, TbArrowUpRight, TbStack2 } from 'react-icons/tb';
+import { TbApi, TbArrowLeft, TbArrowRight, TbArrowUpRight, TbStack2 } from 'react-icons/tb';
 import { projects } from '@/database/projects';
 import styles from './SelectedWorks.module.scss';
 
@@ -31,7 +31,7 @@ function matchesFilter(project, filter) {
   if (filter === 'all') return true;
   const haystack = `${project.title} ${project.category} ${project.stack.join(' ')}`.toLowerCase();
   if (filter === 'api') return /api|odoo|ebay|street view/.test(haystack);
-  if (filter === 'system') return /debian|python|shell|système|diagnostic/.test(haystack);
+  if (filter === 'system') return /debian|python|shell|système|systeme|diagnostic/.test(haystack);
   if (filter === 'game') return /jeu|unity|game|2d|idle/.test(haystack);
   return /web|react|next|laravel|wordpress|shopify|tauri|interface/.test(haystack);
 }
@@ -73,11 +73,11 @@ export default function SelectedWorks() {
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
     gsap.from(`.${styles.browser}`, {
-      y: 58,
+      y: 42,
       autoAlpha: 0,
-      duration: .9,
+      duration: .75,
       ease: 'power3.out',
-      scrollTrigger: { trigger: sectionRef.current, start: 'top 70%' }
+      scrollTrigger: { trigger: sectionRef.current, start: 'top 76%' }
     });
   }, { scope: sectionRef });
 
@@ -97,11 +97,6 @@ export default function SelectedWorks() {
     setActive((current) => (current + direction + total) % total);
   };
 
-  const selectByIndex = (index) => {
-    if (!total) return;
-    setActive(index);
-  };
-
   return (
     <section className={styles.section} id="works" ref={sectionRef}>
       <div className={styles.inner}>
@@ -116,37 +111,42 @@ export default function SelectedWorks() {
 
         <div className={styles.browser}>
           <nav className={styles.commandBar} aria-label="Explorer les projets">
-            <div className={styles.tabs} role="tablist" aria-label="Type de projet">
-              {groups.map((item) => (
-                <button
-                  type="button"
-                  key={item.id}
-                  role="tab"
-                  aria-selected={group === item.id}
-                  onClick={() => selectGroup(item.id)}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-
-            <div className={styles.filterMenu} aria-label="Filtrer par technologie">
-              {filters.map((item) => {
-                const Icon = item.icon;
-                return (
+            <div className={styles.commandBlock}>
+              <span>Catégorie</span>
+              <div className={styles.tabs} role="tablist" aria-label="Type de projet">
+                {groups.map((item) => (
                   <button
                     type="button"
                     key={item.id}
-                    className={filter === item.id ? styles.isActive : ''}
-                    onClick={() => selectFilter(item.id)}
-                    aria-label={`Filtrer par ${item.label}`}
-                    aria-pressed={filter === item.id}
+                    role="tab"
+                    aria-selected={group === item.id}
+                    onClick={() => selectGroup(item.id)}
                   >
-                    <Icon aria-hidden="true" />
-                    <small>{item.label}</small>
+                    {item.label}
                   </button>
-                );
-              })}
+                ))}
+              </div>
+            </div>
+
+            <div className={styles.commandBlock}>
+              <span>Technologie principale</span>
+              <div className={styles.filterMenu} aria-label="Filtrer par technologie">
+                {filters.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <button
+                      type="button"
+                      key={item.id}
+                      className={filter === item.id ? styles.isActive : ''}
+                      onClick={() => selectFilter(item.id)}
+                      aria-pressed={filter === item.id}
+                    >
+                      <Icon aria-hidden="true" />
+                      <small>{item.label}</small>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </nav>
 
@@ -166,29 +166,6 @@ export default function SelectedWorks() {
               dragStart.current = null;
             }}
           >
-            {total > 0 && (
-              <aside className={styles.rail} aria-label="Accès rapide aux projets">
-                <div className={styles.railNumbers}>
-                  {visibleProjects.map((project, index) => (
-                    <button
-                      type="button"
-                      key={project.slug}
-                      className={index === active ? styles.currentNumber : ''}
-                      onClick={() => selectByIndex(index)}
-                      aria-current={index === active ? 'true' : undefined}
-                      aria-label={`Afficher ${project.title}`}
-                    >
-                      {String(index + 1).padStart(2, '0')}
-                    </button>
-                  ))}
-                </div>
-                <div className={styles.railActions}>
-                  <button type="button" onClick={() => move(-1)} aria-label="Projet précédent"><TbArrowUp aria-hidden="true" /></button>
-                  <button type="button" onClick={() => move(1)} aria-label="Projet suivant"><TbArrowDown aria-hidden="true" /></button>
-                </div>
-              </aside>
-            )}
-
             <div className={styles.carousel}>
               {previousProject && (
                 <button type="button" className={`${styles.sideCard} ${styles.sideCardLeft}`} onClick={() => move(-1)} aria-label={`Afficher ${previousProject.title}`}>
@@ -205,10 +182,10 @@ export default function SelectedWorks() {
                     key={activeProject.slug}
                     className={styles.featuredCard}
                     style={{ '--project-accent': activeProject.accent || 'hsl(var(--color-primary))' }}
-                    initial={{ opacity: 0, y: 28, scale: .985 }}
+                    initial={{ opacity: 0, y: 22, scale: .99 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -18, scale: .99 }}
-                    transition={{ duration: .48, ease: [0.22, 1, 0.36, 1] }}
+                    exit={{ opacity: 0, y: -16, scale: .99 }}
+                    transition={{ duration: .42, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <div className={styles.featuredCopy}>
                       <span className={styles.eyebrow}>

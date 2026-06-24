@@ -5,12 +5,13 @@ import Link from 'next/link';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
-import { TbBriefcase, TbFileCv, TbMail, TbRoute, TbSparkles } from 'react-icons/tb';
+import { TbBriefcase, TbCpu, TbFileCv, TbMail, TbRoute, TbSparkles } from 'react-icons/tb';
 import PageList from '@/database/PageList.json';
 import styles from './Navigation.module.scss';
 
 const icons = {
   skills: TbSparkles,
+  workflow: TbCpu,
   works: TbBriefcase,
   experience: TbRoute,
   resume: TbFileCv,

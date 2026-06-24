@@ -1,8 +1,8 @@
 {
   "skills": {
     "isActive": true,
-    "showOnNavigation":  true,
-    "showOnFooter":  true,
+    "showOnNavigation": true,
+    "showOnFooter": true,
     "title": "Compétences",
     "description": "Explorez mon éventail de compétences techniques, de la programmation au design, qui me permettent de créer des solutions web innovantes.",
     "image": "",
@@ -10,52 +10,60 @@
   },
   "works": {
     "isActive": true,
-    "showOnNavigation":  true,
-    "showOnFooter":  true,
+    "showOnNavigation": true,
+    "showOnFooter": true,
     "title": "Projets",
     "description": "Voici une sélection de mes réalisations qui met en valeur mon expertise et les résultats obtenus.",
     "image": "",
     "link": "#works"
   },
+  "workflow": {
+    "isActive": true,
+    "showOnNavigation": true,
+    "showOnFooter": true,
+    "title": "IA",
+    "description": "Ma méthode de co-développement avec les IA génératives.",
+    "image": "",
+    "link": "#workflow-ia"
+  },
   "experience": {
     "isActive": true,
-    "showOnNavigation":  true,
-    "showOnFooter":  true,
+    "showOnNavigation": true,
+    "showOnFooter": true,
     "title": "Expérience",
     "description": "Parcourez mon parcours professionnel et les projets significatifs qui ont façonné mon expertise dans le développement web.",
     "image": "",
     "link": "#experience"
   },
-  
   "resume": {
     "isActive": true,
-    "showOnNavigation":  true,
-    "showOnFooter":  true,
+    "showOnNavigation": true,
+    "showOnFooter": true,
     "title": "CV",
     "description": "Consultez mon parcours professionnel et mes réalisations dans un CV clair et concis.",
     "image": "",
     "link": "#resume"
   },
   "contact": {
-    "isActive":  true,
-    "showOnNavigation":  true,
-    "showOnFooter":  false,
+    "isActive": true,
+    "showOnNavigation": true,
+    "showOnFooter": false,
     "title": "Contact",
     "description": "À votre tour de me dire bonjour. J'espère avoir de vos nouvelles !",
     "image": "",
     "link": "#contact"
   },
   "instagram": {
-    "isActive":  true,
-    "showOnNavigation":  false,
-    "showOnFooter":  false,
+    "isActive": true,
+    "showOnNavigation": false,
+    "showOnFooter": false,
     "title": "Instagram",
     "description": "Bons souvenirs, meilleurs moments. Mon journal photo.",
     "image": "",
     "link": "https://www.instagram.com/yasingencnet/"
   },
   "about": {
-    "isActive":  false,
+    "isActive": false,
     "showOnNavigation": false,
     "showOnFooter": false,
     "title": "À propos",
@@ -64,9 +72,9 @@
     "link": "/about"
   },
   "blog": {
-    "isActive":  false,
-    "showOnNavigation":  false,
-    "showOnFooter":  false,
+    "isActive": false,
+    "showOnNavigation": false,
+    "showOnFooter": false,
     "title": "Blog",
     "description": "Articles axés sur CSS, HTML, JavaScript et autres sujets frontend.",
     "image": "",
