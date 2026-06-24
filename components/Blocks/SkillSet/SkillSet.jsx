@@ -141,7 +141,6 @@ export default function SkillSet() {
                     <div className={`${styles.sphere} ${dragStatus === 'pressed' ? styles.isActive : ''}`}></div>
                 </div>
             </section>
-            <div style={{ padding: 'var(--y-spacing) 0 var(--x-spacing)', height: '6rem' }}></div>
         </>
     )
 }

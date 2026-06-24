@@ -1,0 +1,85 @@
+
+> portfolio-pf6@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 1962ms
+ ○ Compiling / ...
+ ✓ Compiled / in 13.7s (1322 modules)
+ GET / 200 in 15952ms
+ GET / 200 in 118ms
+ ○ Compiling /icon.png ...
+ ✓ Compiled /icon.png in 1935ms (700 modules)
+ GET /icon.png?19659db4ea0173bb 200 in 2004ms
+ ✓ Compiled in 2.2s (1364 modules)
+ GET / 200 in 742ms
+ GET /icon.png?19659db4ea0173bb 200 in 40ms
+ ✓ Compiled in 2.2s (1336 modules)
+ ✓ Compiled in 2.3s (1332 modules)
+ ✓ Compiled in 2.1s (1322 modules)
+ ✓ Compiled in 877ms (1332 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 635ms (1325 modules)
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1138ms (1551 modules)
+ GET /_next/static/css/app/layout.css?1782202326937 404 in 2139ms
+ GET /_next/static/css/app/page.css?1782202326937 404 in 2135ms
+ GET /_next/static/css/app/layout.css?v=1782202329155 404 in 410ms
+ GET /_next/static/css/app/page.css?v=1782202329155 404 in 83ms
+ ✓ Compiled in 608ms (1561 modules)
+ GET /_next/static/css/app/layout.css?v=1782202337046 404 in 570ms
+ GET /_next/static/css/app/layout.css?1782202337935 404 in 97ms
+ GET / 200 in 603ms
+ GET / 200 in 121ms
+ ○ Compiling /icon.png ...
+ ✓ Compiled /icon.png in 1247ms (742 modules)
+ GET /icon.png?19659db4ea0173bb 200 in 1505ms
+ GET / 200 in 861ms
+ GET /icon.png?19659db4ea0173bb 404 in 50ms
+ ✓ Compiled in 870ms (1547 modules)
+ ✓ Compiled /_not-found in 234ms (709 modules)
+ GET /_next/static/webpack/0068f868e257b6a1.webpack.hot-update.json 404 in 424ms
+ GET / 200 in 131ms
+ ✓ Compiled in 1424ms (1549 modules)
+ GET /_next/static/webpack/d53efae3a5ef3a5e.webpack.hot-update.json 404 in 138ms
+ GET / 200 in 102ms
+ ✓ Compiled in 827ms (1559 modules)
+ ✓ Compiled /_error in 389ms (1551 modules)
+ GET /_next/static/webpack/1984cdd37b31d02c.webpack.hot-update.json 404 in 436ms
+ GET / 200 in 118ms
+ ✓ Compiled in 637ms (1551 modules)
+ ✓ Compiled in 1488ms (1561 modules)
+ ✓ Compiled in 929ms (1564 modules)
+ ✓ Compiled in 474ms (1564 modules)
+ GET / 200 in 632ms
+ ✓ Compiled in 5s (1554 modules)
+ ✓ Compiled in 5.4s (1564 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 7.7s (1556 modules)
+ GET /_next/static/css/app/layout.css?1782205052426 404 in 9913ms
+ GET /_next/static/css/app/layout.css?v=1782205052505 404 in 9963ms
+ GET /_next/static/css/app/layout.css?1782205052428 404 in 9982ms
+ ✓ Compiled in 1841ms (1558 modules)
+ ✓ Compiled in 1247ms (1568 modules)
+ GET /_next/static/css/app/layout.css?1782205108347 404 in 585ms
+ GET /_next/static/css/app/layout.css?v=1782205108363 404 in 506ms
+ GET /_next/static/css/app/layout.css?1782205108348 404 in 556ms
+ ✓ Compiled in 1688ms (1558 modules)
+ GET / 200 in 560ms
+ GET / 200 in 100ms
+ GET /_vercel/insights/script.js 404 in 207ms
+ ○ Compiling /icon.png ...
+ ✓ Compiled /icon.png in 2.5s (745 modules)
+ GET /icon.png?19659db4ea0173bb 200 in 2979ms
+ ○ Compiling /projets/[slug] ...
+ ✓ Compiled /projets/[slug] in 2.3s (1625 modules)
+ ✓ Compiled /_error in 401ms (1617 modules)
+ GET /projets/itgreen-intranet 500 in 343ms
+ GET / 500 in 30ms
+ GET / 500 in 23ms
+ GET / 500 in 36ms
+ GET / 500 in 32ms
+ GET / 500 in 32ms

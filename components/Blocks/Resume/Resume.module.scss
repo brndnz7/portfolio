@@ -2,7 +2,24 @@
 
 .section {
   position: relative;
+  overflow: hidden;
   padding: var(--y-spacing) 0 var(--y-spacing);
+  background:
+    radial-gradient(circle at 50% 12%, hsla(var(--color-primary), .075), transparent 38rem),
+    radial-gradient(circle at 84% 64%, rgba(39, 86, 180, .09), transparent 40rem),
+    linear-gradient(180deg, #08080a 0%, #060608 100%);
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255, 255, 255, .014) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .01) 1px, transparent 1px);
+  background-size: 8rem 8rem;
+  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  pointer-events: none;
 }
 
 .content {
@@ -11,9 +28,12 @@
   justify-content: center;
   flex-direction: column;
   position: relative;
+  z-index: 1;
 
-  background: url("/gradient-blob.svg") center top no-repeat;
-  background-size: contain;
+  background:
+    radial-gradient(ellipse at 50% 0%, hsla(var(--color-primary), .09), transparent 35rem),
+    url("/gradient-blob.svg") center top no-repeat;
+  background-size: auto, contain;
   padding-top: 3rem;
   @include respond-below(xs) {
     align-items: flex-start;
@@ -40,13 +60,18 @@
 }
 .card {
   position: relative;
-  background-color: hsla(var(--color-black), .2);
-  backdrop-filter: blur(.4rem);
+  border: 1px solid hsla(var(--color-white), .11);
+  background:
+    linear-gradient(145deg, hsla(var(--surface-glass), .09), hsla(var(--surface-glass), .025)),
+    hsla(var(--color-black), .26);
+  backdrop-filter: blur(1.4rem);
+  -webkit-backdrop-filter: blur(1.4rem);
   border-radius: 2rem;
   padding: 1.5rem;
   aspect-ratio: 3 / 4;
   max-width: 38rem;
-  transition: all .3s ease;
+  box-shadow: 0 3rem 8rem rgba(0, 0, 0, .28);
+  transition: all .3s var(--ease-out);
   @include respond-below(sm) {
     max-width: 22rem;
     border-radius: 1rem;
@@ -77,7 +102,7 @@
     height: 100%;
     .cardInner{
       background-image: none;
-      background-color: #1E1F22;
+      background-color: #141417;
       padding: 0;
     }
   }
@@ -88,7 +113,7 @@
     padding: 2rem;
     overflow: hidden;
     border-radius: 2rem;
-    background-color: hsl(var(--color-bg));
+    background-color: #f5f3ea;
     background-image: url("/spiral.svg");
     background-position: 50% 0;
     background-size: cover;
@@ -96,7 +121,7 @@
 
     .cardTitle {
       font-size: var(--fs-xs);
-      color: hsl(var(--color-alert));
+      color: #927500;
       font-weight: var(--fw-bold);
     }
 
@@ -246,7 +271,7 @@
       position: relative;
       display: inline-block;
       padding: .5rem;
-      color: hsl(var(--color-body));
+      color: hsla(var(--color-white), .62);
       font-size: var(--fs-xs);
       text-decoration: none;
       transition: all 0.3s ease-in-out;
@@ -260,7 +285,7 @@
         left: 0;
         transform-origin: right;
         transform: scaleX(0);
-        transition: transform .3s ease-in-out;
+        transition: transform .3s var(--ease-out);
       }
       &:hover{
         &:after{

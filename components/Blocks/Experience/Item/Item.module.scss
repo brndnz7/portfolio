@@ -1,33 +1,42 @@
 @import '/assets/media-queries.scss';
 
 .item {
-  display: flex;
   width: 100%;
-  justify-content: space-between;
-  align-items: center;
   border-bottom: 1px solid hsla(var(--color-white), .1);
-  cursor: pointer;
   transition: all 0.2s;
-  padding: 4rem 0;
-  gap: 3rem;
   /*background: hsl(var(--h), var(--s), var(--l));*/
-  @include respond-below(sm) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    padding: 3rem 0;
-  }
 
   &:first-of-type{
     border-top: 1px solid hsla(var(--color-white), .1);
   }
 
-  &:hover {
+  &:hover,
+  &.isOpen {
     .title {
       > * {
         transform: translateY(-100%);
       }
     }
+  }
+}
+
+.summary {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 4rem 0;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+
+  @include respond-below(sm) {
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 3rem 0;
   }
 }
 
@@ -62,8 +71,12 @@
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  padding-right: 5.5rem;
   @include respond-above(sm) {
     text-align: right;
+  }
+  @include respond-below(sm) {
+    padding-right: 0;
   }
 }
 
@@ -71,4 +84,63 @@
   font-size: var(--fs-xs);
   font-weight: var(--fw-regular);
   color: hsla(var(--color-white), .4);
+}
+
+.toggle {
+  display: grid;
+  flex: 0 0 auto;
+  width: 4.2rem;
+  height: 4.2rem;
+  place-items: center;
+  border: 1px solid hsla(var(--color-white), .12);
+  border-radius: 50%;
+  color: hsl(var(--color-primary));
+  background: hsla(var(--color-white), .04);
+  transition: transform .25s var(--ease-out), background .25s var(--ease-out);
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.isOpen .toggle {
+  background: hsl(var(--color-primary));
+  color: hsl(var(--color-black));
+  transform: rotate(180deg);
+}
+
+.details {
+  max-width: 82rem;
+  padding: 0 0 4rem;
+  margin-top: -1.2rem;
+  color: hsla(var(--color-white), .66);
+  font-size: var(--fs-xs);
+  line-height: 1.65;
+
+  ul {
+    display: grid;
+    gap: 1rem;
+  }
+
+  li {
+    position: relative;
+    padding-left: 2rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: .82em;
+      left: 0;
+      width: .6rem;
+      height: .6rem;
+      border-radius: 50%;
+      background: hsl(var(--color-primary));
+      box-shadow: 0 0 1.4rem hsla(var(--color-primary), .45);
+    }
+  }
+
+  p {
+    max-width: 62ch;
+  }
 }

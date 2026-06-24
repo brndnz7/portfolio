@@ -5,7 +5,9 @@
   position: relative;
   min-height: 100dvh;
   overflow: hidden;
-  background: radial-gradient(circle at 56% 22%, #10255a 0%, #030713 46%, #000 78%);
+  background:
+    radial-gradient(circle at 58% 18%, rgba(39, 86, 180, .42) 0%, rgba(3, 7, 19, .92) 42%, rgba(0, 0, 0, 1) 78%),
+    #020306;
 }
 
 .inner {
@@ -50,7 +52,8 @@
   z-index: 0;
   inset: 0;
   overflow: hidden;
-  background: radial-gradient(circle at 56% 22%, #10255a 0%, #030713 46%, #000 78%);
+  background:
+    radial-gradient(circle at 56% 22%, rgba(16, 37, 90, .92) 0%, rgba(3, 7, 19, .84) 46%, #000 78%);
 }
 
 .shaderVeil {
@@ -59,7 +62,7 @@
   inset: 0;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, .7) 0%, rgba(0, 0, 0, .32) 46%, rgba(0, 0, 0, .04) 100%),
-    linear-gradient(180deg, rgba(0, 0, 0, .06), rgba(0, 0, 0, .3));
+    linear-gradient(180deg, rgba(0, 0, 0, .06), rgba(0, 0, 0, .54));
   pointer-events: none;
 }
 

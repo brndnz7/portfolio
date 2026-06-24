@@ -5,6 +5,7 @@ import SkillSet from '@/components/Blocks/SkillSet/SkillSet';
 import SelectedWorks from '@/components/Blocks/SelectedWorks/SelectedWorks';
 import ExperienceBlock from '@/components/Blocks/Experience/Experience';
 import Resume from '@/components/Blocks/Resume/Resume';
+import Contact from '@/components/Blocks/Contact/Contact';
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <SelectedWorks />
       <ExperienceBlock />
       <Resume />
+      <Contact />
     </>
   );
 }

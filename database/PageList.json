@@ -43,7 +43,7 @@
     "title": "Contact",
     "description": "À votre tour de me dire bonjour. J'espère avoir de vos nouvelles !",
     "image": "",
-    "link": "#footer"
+    "link": "#contact"
   },
   "instagram": {
     "isActive":  true,

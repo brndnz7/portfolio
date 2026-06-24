@@ -2,10 +2,12 @@
 
 .footer{
   position: relative;
-  background: hsl(var(--color-bg-alt));
+  background:
+    radial-gradient(circle at 18% 18%, hsla(var(--color-primary), .06), transparent 36rem),
+    linear-gradient(180deg, #060608 0%, #040405 100%);
   padding: var(--y-spacing) var(--x-spacing) 3rem;
   overflow: hidden;
-  border-top: 1px solid hsla(var(--color-white), 0.1);
+  border-top: 1px solid hsla(var(--color-white), 0.075);
   @include respond-above(xs) {
     padding: var(--y-spacing) var(--x-spacing) 9rem;
   }

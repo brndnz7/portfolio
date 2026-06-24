@@ -86,6 +86,7 @@ export default function Resume() {
                         <Link href={`${commonConfig.social.linkedin}`} target={'_blank'}>LinkedIn</Link>
                         <Link href={`${commonConfig.social.github}`} target={'_blank'}>GitHub</Link>
                     </div>
+
                 </div>
             </Container>
         </section>

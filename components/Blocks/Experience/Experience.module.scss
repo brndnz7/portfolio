@@ -2,10 +2,16 @@
 
 .section{
   position: relative;
+  overflow: hidden;
   padding: var(--y-spacing) var(--x-spacing);
-  background-color: hsl(var(--color-bg-alt));
+  background:
+    radial-gradient(circle at 82% 18%, hsla(var(--color-primary), .055), transparent 36rem),
+    radial-gradient(circle at 12% 70%, rgba(39, 86, 180, .09), transparent 42rem),
+    linear-gradient(180deg, #08080a 0%, #07070a 50%, #08080a 100%);
 }
 
 .header{
+  position: relative;
+  z-index: 1;
   margin-bottom: var(--x-spacing);
 }

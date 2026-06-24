@@ -1,19 +1,25 @@
 @import 'media-queries.scss';
 
 :root {
-  --font-alt: 'Libre Baskerville', serif;
+  --font-alt: var(--font-primary);
   --font-primary: 'Manrope', sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
   --color-bg: 210, 75%, 98%;
-  --color-bg-alt: 240, 10%, 5%;
+  --color-bg-alt: 240, 8%, 4%;
   --color-primary: 50, 100%, 50%;
-  --color-primary-alt: 50, 32%, 42%;
+  --color-primary-alt: 48, 72%, 62%;
   --color-alert: 0, 88%, 45%;
   --color-success: 135, 85%, 55%;
   --color-white: 0, 0%, 100%;
   --color-black: 0, 0%, 0%;
   --color-title: 0, 0%, 0%;
-  --color-body: 213, 9%, 45%;
+  --color-body: 220, 9%, 68%;
+  --color-muted: 220, 7%, 52%;
+  --color-line: 0, 0%, 100%;
+  --surface-base: 240, 8%, 4%;
+  --surface-raised: 240, 7%, 7%;
+  --surface-glass: 0, 0%, 100%;
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
   --focus: #ffd600;
   --fs-ms: 1.2rem;
   --fs-xxs: 1.6rem;
@@ -48,7 +54,19 @@
 html { font-size: 62.5%; scroll-behavior: smooth; }
 * { margin: 0; }
 ul, ol { list-style: none; padding: 0; }
-body { min-height: 100dvh; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; background: hsl(var(--color-bg-alt)); font-family: var(--font-primary); }
+body {
+  min-height: 100dvh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  color: hsl(var(--color-white));
+  background:
+    radial-gradient(circle at 74% 6%, rgba(255, 214, 0, .07), transparent 32rem),
+    radial-gradient(circle at 20% 28%, rgba(39, 86, 180, .11), transparent 42rem),
+    hsl(var(--surface-base));
+  font-family: var(--font-primary);
+  text-rendering: geometricPrecision;
+}
 p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 a:not([class]) { text-decoration-skip-ink: auto; color: currentColor; }
 img, picture { max-width: 100%; display: block; }
@@ -57,7 +75,15 @@ input, button, textarea, select { font: inherit; }
 #root, #__next { isolation: isolate; }
 ::selection { color: hsl(var(--color-black)); background: hsl(var(--color-primary)); }
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
-main { min-height: 100vh; }
+main {
+  position: relative;
+  min-height: 100vh;
+  overflow: clip;
+  background:
+    linear-gradient(180deg, #020306 0%, #07070a 26%, #08080a 62%, #040405 100%);
+}
+
+main > section { position: relative; }
 p { font-weight: var(--fw-regular); }
 
 .lenis.lenis-smooth { scroll-behavior: auto; }
