@@ -1,6 +1,5 @@
 'use client';
 
-import Script from 'next/script';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { TbBrandGithub, TbBrandLinkedin, TbMail, TbMapPin, TbSend } from 'react-icons/tb';
 import commonConfig from '@/database/config/metadata.json';
@@ -66,6 +65,47 @@ export default function Contact() {
     if (isTurnstileReady) renderTurnstile();
   }, [isTurnstileReady, renderTurnstile]);
 
+  useEffect(() => {
+    if (!hasTurnstile || typeof window === 'undefined') return undefined;
+
+    if (window.turnstile) {
+      setIsTurnstileReady(true);
+      return undefined;
+    }
+
+    const existingScript = document.querySelector('script[data-turnstile-script="true"]');
+    const handleLoad = () => setIsTurnstileReady(true);
+    const handleError = () => {
+      setErrors((current) => ({
+        ...current,
+        captcha: 'Le CAPTCHA ne s’est pas chargé. Recharge la page puis réessaie.'
+      }));
+    };
+
+    if (existingScript) {
+      existingScript.addEventListener('load', handleLoad);
+      existingScript.addEventListener('error', handleError);
+      return () => {
+        existingScript.removeEventListener('load', handleLoad);
+        existingScript.removeEventListener('error', handleError);
+      };
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+    script.async = true;
+    script.defer = true;
+    script.dataset.turnstileScript = 'true';
+    script.addEventListener('load', handleLoad);
+    script.addEventListener('error', handleError);
+    document.head.appendChild(script);
+
+    return () => {
+      script.removeEventListener('load', handleLoad);
+      script.removeEventListener('error', handleError);
+    };
+  }, []);
+
   const submit = async (event) => {
     event.preventDefault();
 
@@ -121,16 +161,6 @@ export default function Contact() {
 
   return (
     <section className={styles.section} id="contact">
-      {hasTurnstile && (
-        <Script
-          src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
-          strategy="afterInteractive"
-          async
-          defer
-          onLoad={() => setIsTurnstileReady(true)}
-        />
-      )}
-
       <div className={styles.inner}>
         <div className={styles.copy}>
           <span className={styles.eyebrow}>Contact</span>
