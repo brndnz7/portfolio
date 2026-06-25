@@ -1,6 +1,5 @@
 import commonConfig from '@/database/config/metadata.json';
 import ShaderAnimation from '@/components/UI/ShaderAnimation/ShaderAnimation';
-import HeroObject3D from './HeroObject3D';
 import styles from './Hero.module.scss';
 
 export default function Hero() {
@@ -21,10 +20,6 @@ export default function Hero() {
             </h1>
             <p>{commonConfig.metadata.description}</p>
           </div>
-
-          <aside className={styles.visual} aria-label="Objet 3D abstrait représentant mon univers web et interactif">
-            <HeroObject3D />
-          </aside>
         </div>
       </div>
     </section>
