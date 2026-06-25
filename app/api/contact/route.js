@@ -3,10 +3,14 @@ import crypto from 'crypto';
 
 export const dynamic = 'force-dynamic';
 
-const recipientEmail = process.env.CONTACT_TO_EMAIL || 'barancelal58@hotmail.com';
-const resendApiKey = process.env.RESEND_API_KEY;
-const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Portfolio Baran <onboarding@resend.dev>';
-const turnstileSecretKey = process.env.TURNSTILE_SECRET_KEY || '';
+function cleanEnv(value) {
+  return String(value || '').replace(/^\uFEFF/, '').trim();
+}
+
+const recipientEmail = cleanEnv(process.env.CONTACT_TO_EMAIL) || 'barancelal58@hotmail.com';
+const resendApiKey = cleanEnv(process.env.RESEND_API_KEY);
+const fromEmail = cleanEnv(process.env.CONTACT_FROM_EMAIL) || 'Portfolio Baran <onboarding@resend.dev>';
+const turnstileSecretKey = cleanEnv(process.env.TURNSTILE_SECRET_KEY);
 
 function clean(value, maxLength = 1000) {
   return String(value || '').trim().slice(0, maxLength);
