@@ -6,8 +6,7 @@ export const dynamic = 'force-dynamic';
 const recipientEmail = process.env.CONTACT_TO_EMAIL || 'barancelal58@hotmail.com';
 const resendApiKey = process.env.RESEND_API_KEY;
 const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Portfolio Baran <onboarding@resend.dev>';
-const turnstileSecretKey = process.env.TURNSTILE_SECRET_KEY
-  || (process.env.NODE_ENV === 'production' ? '' : '1x0000000000000000000000000000000AA');
+const turnstileSecretKey = process.env.TURNSTILE_SECRET_KEY || '';
 
 function clean(value, maxLength = 1000) {
   return String(value || '').trim().slice(0, maxLength);
@@ -29,8 +28,8 @@ function escapeHtml(value) {
 async function verifyTurnstile(token, request) {
   if (!turnstileSecretKey) {
     return {
-      success: false,
-      message: 'Le CAPTCHA n’est pas encore configuré côté serveur.'
+      success: true,
+      message: 'CAPTCHA non configuré, vérification ignorée.'
     };
   }
 

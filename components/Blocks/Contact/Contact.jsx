@@ -7,7 +7,8 @@ import commonConfig from '@/database/config/metadata.json';
 import styles from './Contact.module.scss';
 
 const contactEmail = 'barancelal58@hotmail.com';
-const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
+const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '';
+const hasTurnstile = Boolean(turnstileSiteKey);
 
 function resetTurnstile() {
   if (typeof window !== 'undefined' && window.turnstile) {
@@ -34,7 +35,7 @@ export default function Contact() {
     if (!name) nextErrors.name = 'Ajoute ton nom.';
     if (!email || !/^\S+@\S+\.\S+$/.test(email)) nextErrors.email = 'Ajoute une adresse e-mail valide.';
     if (!message || message.length < 12) nextErrors.message = 'Ajoute un message un peu plus complet.';
-    if (!turnstileToken) nextErrors.captcha = 'Valide le CAPTCHA avant d’envoyer.';
+    if (hasTurnstile && !turnstileToken) nextErrors.captcha = 'Valide le CAPTCHA avant d’envoyer.';
 
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length) return;
@@ -76,12 +77,14 @@ export default function Contact() {
 
   return (
     <section className={styles.section} id="contact">
-      <Script
-        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-        strategy="afterInteractive"
-        async
-        defer
-      />
+      {hasTurnstile && (
+        <Script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          strategy="afterInteractive"
+          async
+          defer
+        />
+      )}
 
       <div className={styles.inner}>
         <div className={styles.copy}>
@@ -136,16 +139,18 @@ export default function Contact() {
             {errors.message && <span role="alert">{errors.message}</span>}
           </div>
 
-          <div className={styles.captchaBlock}>
-            <span>Vérification anti-robot</span>
-            <div
-              className="cf-turnstile"
-              data-sitekey={turnstileSiteKey}
-              data-theme="dark"
-              data-size="normal"
-            />
-            {errors.captcha && <small role="alert">{errors.captcha}</small>}
-          </div>
+          {hasTurnstile && (
+            <div className={styles.captchaBlock}>
+              <span>Vérification anti-robot</span>
+              <div
+                className="cf-turnstile"
+                data-sitekey={turnstileSiteKey}
+                data-theme="dark"
+                data-size="normal"
+              />
+              {errors.captcha && <small role="alert">{errors.captcha}</small>}
+            </div>
+          )}
 
           {status.message && (
             <p className={styles.status} data-type={status.type} role={status.type === 'error' ? 'alert' : 'status'}>
