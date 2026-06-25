@@ -68,6 +68,10 @@ export default function Contact() {
   useEffect(() => {
     if (!hasTurnstile || typeof window === 'undefined') return undefined;
 
+    window.__portfolioTurnstileOnLoad = () => {
+      setIsTurnstileReady(true);
+    };
+
     if (window.turnstile) {
       setIsTurnstileReady(true);
       return undefined;
@@ -92,7 +96,7 @@ export default function Contact() {
     }
 
     const script = document.createElement('script');
-    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=__portfolioTurnstileOnLoad&render=explicit';
     script.async = true;
     script.defer = true;
     script.dataset.turnstileScript = 'true';
@@ -103,6 +107,7 @@ export default function Contact() {
     return () => {
       script.removeEventListener('load', handleLoad);
       script.removeEventListener('error', handleError);
+      delete window.__portfolioTurnstileOnLoad;
     };
   }, []);
 
