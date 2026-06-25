@@ -222,8 +222,71 @@ export const projects = [
     images: ['/gallery/zenlolaccueil.png', '/gallery/zenlol parametre.png', '/gallery/zenlolentrainement.png'], mediaPending: false, links: [],
     competencies: ['AC34.01', 'AC34.04', 'AC35.01', 'AC35.03'], ai: 'L’IA peut aider à prototyper et reformuler les interactions. Les recommandations doivent rester prudentes, explicables et testées auprès de joueurs.', accent: '#b7eb62'
   },
-  { slug: 'new-horizon', title: 'New Horizon', eyebrow: 'Association · 2025', category: 'Archive', tier: 'archive', featured: false, summary: 'Une plateforme associative pour présenter les actions, membres, événements et dons.', stack: ['Next.js', 'React', 'Prisma', 'Supabase'], images: ['/reference/new-horizon.png'], links: [{ label: 'Voir le projet', href: 'https://new-horizon-blond.vercel.app/' }], accent: '#5d7cff' },
-  { slug: 'jeu-course-unity', title: 'Jeu de course Unity', eyebrow: 'Jeu vidéo · 2024', category: 'Archive', tier: 'archive', featured: false, summary: 'Un jeu de course compétitif à deux joueurs développé avec Unity et C#.', stack: ['Unity', 'C#', 'Game design'], images: ['/gallery/vitessemax.png'], links: [{ label: 'Voir la vidéo', href: 'https://drive.google.com/file/d/1zu7ilQVttQDq9jZhwJvQSl4xgnJ5sNfx/view?usp=drive_link' }], accent: '#4c86ff' },
+  {
+    slug: 'new-horizon',
+    title: 'New Horizon',
+    eyebrow: 'Projet de stage · 2025',
+    category: 'Projet de stage',
+    tier: 'archive',
+    featured: false,
+    status: 'Mis en ligne',
+    summary: 'Une plateforme associative réalisée durant mon stage, pour présenter les actions, membres, événements et dons de New Horizon.',
+    context: 'New Horizon avait besoin d’un site clair et administrable pour structurer sa présence en ligne et valoriser ses actions auprès du public.',
+    need: 'Créer une plateforme moderne, maintenable et suffisamment complète pour regrouper présentation, contenus associatifs, événements et parcours de donation.',
+    role: 'Développement full-stack, intégration des interfaces, structuration des données et déploiement du site pendant mon stage.',
+    team: 'Projet réalisé en stage, avec des retours liés aux besoins réels de l’association.',
+    duration: 'Stage · 2025',
+    stack: ['Next.js', 'React', 'Prisma', 'Supabase', 'PostgreSQL', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    challenges: [
+      'Structurer plusieurs types de contenus associatifs dans une interface cohérente.',
+      'Prévoir une base de données adaptée aux membres, événements et donations.',
+      'Livrer une plateforme présentable en ligne dans un cadre de stage.'
+    ],
+    decisions: [
+      'Utiliser Next.js et React pour construire une interface rapide et maintenable.',
+      'Centraliser les données avec Prisma et Supabase.',
+      'Déployer sur Vercel pour obtenir une mise en ligne simple et fiable.'
+    ],
+    results: ['Site associatif mis en ligne', 'Architecture full-stack', 'Base de données structurée', 'Projet réalisé en contexte professionnel'],
+    images: ['/reference/new-horizon.png', '/reference/newhorizon4.png', '/reference/newhorizon2.png', '/reference/newhorizon3.png'],
+    links: [{ label: 'Voir le projet', href: 'https://new-horizon-blond.vercel.app/' }],
+    competencies: ['AC34.01', 'AC34.02', 'AC34.05', 'AC35.01', 'AC35.02', 'AC35.04'],
+    ai: 'L’IA a pu servir d’appui ponctuel pour explorer des pistes techniques ou reformuler certains contenus. Les choix d’architecture, l’intégration et la validation sont restés pilotés humainement.',
+    accent: '#5d7cff'
+  },
+  {
+    slug: 'jeu-course-unity',
+    title: 'Speedzone V2',
+    eyebrow: 'Jeu vidéo Unity · 2024',
+    category: 'Jeu vidéo Unity',
+    tier: 'archive',
+    featured: false,
+    status: 'Prototype jouable',
+    summary: 'Un jeu de course local à deux joueurs développé avec Unity et C#, présenté directement avec sa vidéo de gameplay.',
+    context: 'Le projet explore la création d’un jeu de course compétitif en écran partagé, avec une boucle simple : départ, tours, vitesse et confrontation directe.',
+    need: 'Produire un prototype jouable qui démontre la gestion des véhicules, de la caméra, de l’interface et du rythme de course.',
+    role: 'Développement Unity/C#, intégration du gameplay, réglage des contrôles et mise en place de l’interface de course.',
+    team: 'Projet réalisé dans un cadre académique.',
+    duration: '2024',
+    stack: ['Unity', 'C#', 'Game design', 'Split-screen', 'Prototype jouable'],
+    challenges: [
+      'Gérer deux joueurs simultanément sur un même écran.',
+      'Rendre la conduite lisible et réactive malgré un prototype rapide.',
+      'Afficher les informations de course sans gêner la visibilité.'
+    ],
+    decisions: [
+      'Utiliser un écran partagé pour garder une confrontation locale directe.',
+      'Prioriser une boucle de gameplay simple plutôt qu’un contenu trop large.',
+      'Documenter le projet avec une vidéo intégrée plutôt qu’un lien externe.'
+    ],
+    results: ['Prototype jouable', 'Course locale à deux joueurs', 'Interface de tours et vitesse', 'Vidéo de gameplay intégrée'],
+    images: ['/reference/speedzonev2-01.jpg', '/reference/speedzonev2-02.jpg', '/reference/speedzonev2-03.jpg'],
+    video: '/reference/unity-racing.mp4',
+    links: [],
+    competencies: ['AC34.03', 'AC35.02'],
+    ai: 'Ce projet sert surtout de preuve Unity/C# et gameplay. L’IA n’a pas été centrale : la validation repose principalement sur le test du prototype et l’observation du gameplay.',
+    accent: '#4c86ff'
+  },
   { slug: 'ecostay', title: 'Ecostay Global', eyebrow: 'E-commerce · 2023', category: 'Archive', tier: 'archive', featured: false, summary: 'Un site vitrine et e-commerce réalisé avec WordPress et WooCommerce.', stack: ['WordPress', 'WooCommerce', 'PHP'], images: ['/gallery/ecostay.png'], links: [], accent: '#47b477' },
   { slug: 'green-life', title: 'Green Life', eyebrow: 'Shopify · 2023', category: 'Archive', tier: 'archive', featured: false, summary: 'Une boutique Shopify responsive dédiée à des solutions écologiques.', stack: ['Shopify', 'Liquid', 'JavaScript'], images: ['/gallery/greenlife.png'], links: [], accent: '#79b841' }
 ];

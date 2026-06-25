@@ -52,6 +52,19 @@ export default function ProjectPage({ params }) {
         </div>
       )}
 
+      {project.video && (
+        <section className={styles.videoBlock} aria-label={`Vidéo de gameplay de ${project.title}`}>
+          <video
+            controls
+            preload="metadata"
+            poster={images[0]}
+          >
+            <source src={project.video} type="video/mp4" />
+            Votre navigateur ne prend pas en charge la lecture vidéo.
+          </video>
+        </section>
+      )}
+
       {project.mediaPending && (
         <aside className={styles.mediaNotice}>
           <strong>Visuel temporaire</strong>

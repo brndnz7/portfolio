@@ -12,7 +12,7 @@ import { TbApi, TbArrowLeft, TbArrowRight, TbArrowUpRight, TbStack2 } from 'reac
 import { projects } from '@/database/projects';
 import styles from './SelectedWorks.module.scss';
 
-const personalSlugs = new Set(['geodevinette', 'counterlol', 'evolve2d', 'trk-lol', 'zen-lol', 'new-horizon', 'ecostay', 'green-life']);
+const personalSlugs = new Set(['geodevinette', 'counterlol', 'evolve2d', 'trk-lol', 'zen-lol', 'ecostay', 'green-life']);
 
 const groups = [
   { id: 'academic', label: 'Académique & pro' },

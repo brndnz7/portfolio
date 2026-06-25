@@ -47,10 +47,10 @@
       "/reference/newhorizon2.png",
       "/reference/newhorizon3.png"
     ],
-    "description": "Site web complet pour l'association New Horizon. Plateforme moderne avec système de gestion des membres, événements et donations. Architecture full-stack avec base de données robuste.",
+    "description": "Site web complet réalisé durant mon stage pour l'association New Horizon. Plateforme moderne avec système de gestion des membres, événements et donations. Architecture full-stack avec base de données robuste.",
     "url": "https://new-horizon-blond.vercel.app/",
     "date": "2025",
-    "service": "Développement Full-Stack",
+    "service": "Stage · Développement Full-Stack",
     "technologies": ["Next.js", "React", "Prisma", "Supabase", "PostgreSQL", "TypeScript", "Tailwind CSS", "Vercel"],
     "status": true,
     "color": {
@@ -80,11 +80,15 @@
     }
   },
   {
-    "title": "Jeu de Course Unity",
-    "image": "/reference/vitessemax.png",
+    "title": "Speedzone V2",
+    "images": [
+      "/reference/speedzonev2-01.jpg",
+      "/reference/speedzonev2-02.jpg",
+      "/reference/speedzonev2-03.jpg"
+    ],
     "video": "/reference/unity-racing.mp4",
-    "description": "Jeu de course multijoueur pour 2 joueurs développé avec Unity. Système de course compétitive avec physique réaliste, contrôles optimisés et interface multijoueur locale.",
-    "url": "https://drive.google.com/file/d/1zu7ilQVttQDq9jZhwJvQSl4xgnJ5sNfx/view?usp=drive_link",
+    "description": "Jeu de course local à deux joueurs développé avec Unity et C#. La vidéo de gameplay est intégrée directement dans l'étude de cas.",
+    "url": "",
     "date": "2024",
     "service": "Développement Jeu Vidéo",
     "technologies": ["Unity", "C#", "Game Development"],
