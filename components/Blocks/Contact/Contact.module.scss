@@ -192,6 +192,11 @@
   font-weight: var(--fw-bold);
 }
 
+.turnstileWidget {
+  min-width: 30rem;
+  min-height: 6.5rem;
+}
+
 .captchaBlock small {
   color: #ffb4a8;
   font-size: 1.2rem;

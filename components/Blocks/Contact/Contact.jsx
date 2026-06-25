@@ -1,7 +1,7 @@
 'use client';
 
 import Script from 'next/script';
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { TbBrandGithub, TbBrandLinkedin, TbMail, TbMapPin, TbSend } from 'react-icons/tb';
 import commonConfig from '@/database/config/metadata.json';
 import styles from './Contact.module.scss';
@@ -10,16 +10,61 @@ const contactEmail = 'barancelal58@hotmail.com';
 const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '';
 const hasTurnstile = Boolean(turnstileSiteKey);
 
-function resetTurnstile() {
-  if (typeof window !== 'undefined' && window.turnstile) {
-    window.turnstile.reset();
-  }
-}
-
 export default function Contact() {
+  const turnstileRef = useRef(null);
+  const widgetIdRef = useRef(null);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState({ type: 'idle', message: '' });
   const [isSending, setIsSending] = useState(false);
+  const [isTurnstileReady, setIsTurnstileReady] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState('');
+
+  const resetTurnstile = useCallback(() => {
+    setTurnstileToken('');
+    if (typeof window !== 'undefined' && window.turnstile && widgetIdRef.current !== null) {
+      window.turnstile.reset(widgetIdRef.current);
+    }
+  }, []);
+
+  const renderTurnstile = useCallback(() => {
+    if (!hasTurnstile || !turnstileRef.current || typeof window === 'undefined' || !window.turnstile) return;
+    if (widgetIdRef.current !== null) return;
+
+    try {
+      widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
+        sitekey: turnstileSiteKey,
+        theme: 'dark',
+        size: 'normal',
+        callback: (token) => {
+          setTurnstileToken(token);
+          setErrors((current) => {
+            const next = { ...current };
+            delete next.captcha;
+            return next;
+          });
+        },
+        'expired-callback': () => {
+          setTurnstileToken('');
+        },
+        'error-callback': () => {
+          setTurnstileToken('');
+          setErrors((current) => ({
+            ...current,
+            captcha: 'Le CAPTCHA ne s’est pas chargé. Recharge la page puis réessaie.'
+          }));
+        }
+      });
+    } catch {
+      setErrors((current) => ({
+        ...current,
+        captcha: 'Le CAPTCHA ne s’est pas chargé. Recharge la page puis réessaie.'
+      }));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isTurnstileReady) renderTurnstile();
+  }, [isTurnstileReady, renderTurnstile]);
 
   const submit = async (event) => {
     event.preventDefault();
@@ -29,7 +74,6 @@ export default function Contact() {
     const name = data.get('name')?.trim();
     const email = data.get('email')?.trim();
     const message = data.get('message')?.trim();
-    const turnstileToken = data.get('cf-turnstile-response')?.trim();
     const nextErrors = {};
 
     if (!name) nextErrors.name = 'Ajoute ton nom.';
@@ -79,10 +123,11 @@ export default function Contact() {
     <section className={styles.section} id="contact">
       {hasTurnstile && (
         <Script
-          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
           strategy="afterInteractive"
           async
           defer
+          onLoad={() => setIsTurnstileReady(true)}
         />
       )}
 
@@ -142,12 +187,7 @@ export default function Contact() {
           {hasTurnstile && (
             <div className={styles.captchaBlock}>
               <span>Vérification anti-robot</span>
-              <div
-                className="cf-turnstile"
-                data-sitekey={turnstileSiteKey}
-                data-theme="dark"
-                data-size="normal"
-              />
+              <div ref={turnstileRef} className={styles.turnstileWidget} />
               {errors.captcha && <small role="alert">{errors.captcha}</small>}
             </div>
           )}
